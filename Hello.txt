@@ -1,1 +1,3 @@
 Day 1 - Hello how are you?
+
+Day 2 - I am doing great!
