@@ -17,6 +17,6 @@ Go to github,
 On Git Bash,
 
 1. git remote -v - This will give the details of the repository(the files added)
-2. git remote add shabhav https://github.com/akashgupta0087/Swabhav - This will add the file on the local machine to the github repository
+2. git remote add swabhav https://github.com/akashgupta0087/Swabhav - This will add the file on the local machine to the github repository
 3. git push swabhav master - This will push the file to the repository on github
     
