@@ -4,6 +4,7 @@ import com.techlabs.rectangle.Rectangle;
 
 public class RectangleTestArray {
 	public static void main(String[] args) {
+		
 		Rectangle[] rectangles = new Rectangle[5];
 
 		rectangles[0] = new Rectangle(10, 20);
