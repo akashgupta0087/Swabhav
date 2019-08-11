@@ -1,0 +1,22 @@
+1. git init - This initializes the repository(SwabhavRepository)
+2. git log - This shows the files in the repository
+3. git status - This shows is the file is edited
+   i. If edited and not added it will show modified and in       	redcolor
+   ii. If edited and added it will show in green color
+4. git add . - This will add the file to the repository
+5. git commit -m "Initial commit" - This will commit the file
+    -m is for message flag and after that the comment
+6. git checkout 5055 - To see the change of that particular timeline
+Here, 5055 is the hash code for the commit
+7. git checkout master - This will show the master branch and all the commits till now
+
+
+Go to github,
+
+1. Create repository
+On Git Bash,
+
+1. git remote -v - This will give the details of the repository(the files added)
+2. git remote add swabhav https://github.com/akashgupta0087/Swabhav - This will add the file on the local machine to the github repository
+3. git push swabhav master - This will push the file to the repository on github
+    
