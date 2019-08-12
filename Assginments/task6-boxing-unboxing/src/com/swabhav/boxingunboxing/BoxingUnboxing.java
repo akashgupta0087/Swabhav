@@ -17,5 +17,4 @@ public class BoxingUnboxing {
 		System.out.println("Unboxing: ");
 		System.out.println(primitive2);
 	}
-
 }

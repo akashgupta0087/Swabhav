@@ -19,16 +19,16 @@ public class FileReaderTest {
 		
 		switch(choice) {
 		case 1:
-			file = "D:\\SwabhavRepository\\Swabhav\\Assginments\\task4-read-file\\ReadingFiles\\TextFIle.txt";
+			file = "resources/TextFile.txt";
 			break;
 		case 2:
-			file = "D:\\SwabhavRepository\\Swabhav\\Assginments\\task4-read-file\\ReadingFiles\\HtmlFile.html";
+			file = "resources/HtmlFile.html";
 			break;
 		case 3:
-			file = "D:\\SwabhavRepository\\Swabhav\\Assginments\\task4-read-file\\ReadingFiles\\XmlFile.xml";
+			file = "resources/XmlFile.xml";
 			break;
 		case 4:
-			file = "D:\\SwabhavRepository\\Swabhav\\Assginments\\task4-read-file\\ReadingFiles\\CsvFile.csv";
+			file = "resources/CsvFile.csv";
 			break;
 		default:
 			System.out.println("Invalid choice");

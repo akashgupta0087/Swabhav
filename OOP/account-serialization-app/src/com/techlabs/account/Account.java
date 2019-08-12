@@ -6,6 +6,7 @@ public class Account implements Serializable {
 	private final int accountNumber;
 	private final String name;
 	private double balance;
+	private String description;
 
 	public Account(int accountNumber, String name, double balance) {
 		this.accountNumber = accountNumber;
@@ -37,5 +38,13 @@ public class Account implements Serializable {
 
 	public String getName() {
 		return name;
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	public String getDescription() {
+		return description;
 	}
 }
