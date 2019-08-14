@@ -7,5 +7,4 @@ public class ContactTest {
 		ContactUI ui = new ContactUI();
 		ui.menu();
 	}
-
 }

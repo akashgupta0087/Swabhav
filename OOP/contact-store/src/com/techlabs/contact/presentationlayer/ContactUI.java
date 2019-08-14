@@ -12,12 +12,11 @@ public class ContactUI {
 		int choice = 0;
 		Scanner sc = new Scanner(System.in);
 		ContactManager manager = new ContactManager();
-		File file = new File("resources/contact.txt");
-
+		
 		while (true) {
 			System.out.println(" ");
 			System.out.println("What do you want to do :");
-			System.out.println("1.Add a new Contact \n2.View Contacts \n3.Exit");
+			System.out.println("1.Add a new Contact \n2.View Contacts \n3.Search \n4.Exit");
 			System.out.print("Enter your choice : ");
 			choice = sc.nextInt();
 			System.out.println(" ");
@@ -29,7 +28,11 @@ public class ContactUI {
 				output(manager);
 				break;
 			case 3:
+				search(manager);
+				break;
+			case 4:
 				System.exit(0);
+				break;
 			default:
 				System.out.println("Invalid choice");
 			}
@@ -37,7 +40,7 @@ public class ContactUI {
 
 	}
 
-	public void input(ContactManager m) {
+	public void input(ContactManager manager) {
 		String firstName = "";
 		String lastName = "";
 		String email = "";
@@ -54,11 +57,31 @@ public class ContactUI {
 		phoneNo = sc.next();
 
 		Contact c1 = new Contact(firstName, lastName, email, phoneNo);
-		m.addContact(c1);
+		manager.addContact(c1);
 	}
 
-	public void output(ContactManager m) {
-		ArrayList<Contact> contacts = m.getContacts();
+	public void output(ContactManager manager) {
+		ArrayList<Contact> contacts = manager.getContacts();
+		if (contacts != null) {
+			display(contacts);
+		}
+	}
+
+	public void search(ContactManager manager) {
+		String searchInput = "";
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter the first name: ");
+		searchInput = sc.next();
+		ArrayList<Contact> searchedContacts = manager.searchContact(searchInput);
+		if (searchedContacts != null) {
+			display(searchedContacts);
+		}
+		if (searchedContacts.isEmpty()) {
+			System.out.println("Contact not found");
+		}
+	}
+
+	private void display(ArrayList<Contact> contacts) {
 		for (Contact contact : contacts) {
 			System.out.println(contact.getFirstName() + " " + contact.getLastName() + " " + contact.getEmail() + " "
 					+ contact.getPhoneNo());

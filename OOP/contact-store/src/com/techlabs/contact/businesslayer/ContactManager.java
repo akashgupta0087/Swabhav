@@ -5,7 +5,7 @@ import java.io.*;
 
 import java.io.Serializable;
 
-public class ContactManager{
+public class ContactManager {
 
 	public static ArrayList<Contact> contactList = new ArrayList<Contact>();
 
@@ -15,10 +15,25 @@ public class ContactManager{
 	}
 
 	public ArrayList<Contact> getContacts() {
-		ArrayList<Contact> newContactList = load();
-		return newContactList;
+		File file = new File("resources/contacts.txt");
+		if(file.length() !=0) {
+			contactList = load();
+		}
+		contactList = load();
+		return contactList;
 	}
-	
+
+	public ArrayList<Contact> searchContact(String search) {
+		ArrayList<Contact> contactList = getContacts();
+		ArrayList<Contact> searchedContactList = new ArrayList<Contact>();
+		for (int i = 0; i < contactList.size(); i++) {
+			if (search.equalsIgnoreCase(contactList.get(i).getFirstName())) {
+				searchedContactList.add(contactList.get(i));
+			}
+		}
+		return searchedContactList;
+	}
+
 	private static void save(ArrayList<Contact> contacts) {
 
 		try {
@@ -27,7 +42,6 @@ public class ContactManager{
 			ObjectOutputStream out = new ObjectOutputStream(fout);
 
 			out.writeObject(contacts);
-			System.out.println("Serialization Done");
 
 			out.flush();
 			out.close();
@@ -37,27 +51,23 @@ public class ContactManager{
 		}
 	}
 
-	private static ArrayList load() {
-		
-		ArrayList contacts = null;
+	private static ArrayList<Contact> load() {
+
+		ArrayList<Contact> contacts = null;
 		try {
 			// Creating stream to read the object
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream("resources/contacts.txt"));
-			contacts = (ArrayList) in.readObject();
-
-			System.out.println("Deserialization Done");
+			contacts = (ArrayList<Contact>) in.readObject();
 
 			// closing the stream
 			in.close();
 
 		} catch (Exception e) {
-			System.out.println(e);
+			System.out.println("Conntact list is empty");
 		}
-		
+
 		return contacts;
 
 	}
-	
-	
 
 }

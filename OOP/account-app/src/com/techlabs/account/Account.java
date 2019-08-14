@@ -27,6 +27,18 @@ public class Account implements Serializable {
 		}
 	}
 
+	public String toString() {
+		String superclass = super.toString();
+		return "Account No. : " + getAccountNumber() + " Name : " + getName() + 
+				" Balance : " + getBalance() + " Pervious Code : " + superclass;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		Account acc = (Account)obj;
+		return(accountNumber == acc.accountNumber);
+	}
+	
 	public double getBalance() {
 		return balance;
 	}

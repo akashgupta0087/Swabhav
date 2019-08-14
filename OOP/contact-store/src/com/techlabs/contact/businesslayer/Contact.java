@@ -3,7 +3,7 @@ package com.techlabs.contact.businesslayer;
 import java.util.ArrayList;
 import java.io.Serializable;
 
-public class Contact implements Serializable{
+public class Contact implements Serializable {
 	private String firstName;
 	private String lastName;
 	private String email;
