@@ -16,5 +16,7 @@ public class BankTest {
 		//b=new AXIS();  
 		AXIS a = new AXIS();
 		System.out.println("AXIS Rate of Interest: "+a.getRateOfInterest());  
+		
+		
 	}
 }
