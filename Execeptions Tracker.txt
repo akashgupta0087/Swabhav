@@ -1,1 +1,7 @@
 1. java.lang.NullPointerException
+
+2. java.lang.ArrayIndexOutOfBoundsException
+
+3. java.lang.ArithmeticException
+
+4. java.lang.NumberFormatException
