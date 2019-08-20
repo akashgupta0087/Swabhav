@@ -1,5 +1,7 @@
 package com.techlabs.college.test;
 
+import java.util.Collections;
+
 import com.techlabs.college.*;
 
 public class CollegeTest {
