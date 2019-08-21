@@ -1,6 +1,8 @@
 package com.techlabs.lineditems;
 
-public class LinedItem {
+import java.util.Comparator;
+
+public class LinedItem implements Comparable<LinedItem> {
 	private String productName;
 	private int id;
 	private double cost;
@@ -42,6 +44,11 @@ public class LinedItem {
 	@Override
 	public int hashCode() {
 		return id;
+	}
+
+	@Override
+	public int compareTo(LinedItem item) {
+		return this.id - item.id;
 	}
 
 
