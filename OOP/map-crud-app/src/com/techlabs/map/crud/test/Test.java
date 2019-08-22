@@ -19,6 +19,8 @@ public class Test {
 		System.out.println("\nTreeMap starts here: ");
 		TreeMapCrud treeMap = new TreeMapCrud();
 		doCRUDOperations(treeMap);
+		
+		//Double a = null;
 	
 	}
 	
