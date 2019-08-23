@@ -12,6 +12,12 @@ public class AccountTest {
 		display(acc);
 		acc.withdraw(500);
 		display(acc);
+		
+		Account acc2 = new Account(1004, "Rahul", 1000);
+		acc2.deposit(1000);
+		System.out.println("Rahul Balance: " + acc2.getBalance());
+		acc2.withdraw(1500);
+		System.out.println("Rahul Balance: " + acc2.getBalance());
 
 		System.out.println("Balance : " + acc.getBalance());
 		acc.deposit(2000);
