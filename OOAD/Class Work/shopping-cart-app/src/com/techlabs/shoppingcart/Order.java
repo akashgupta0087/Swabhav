@@ -14,30 +14,21 @@ public class Order {
 		this.date = date;
 	}
 
-	public void addLineItem(LineItem item) {
-		boolean isItemExist = true;
+	public void addLineItem(LineItem lineItem) {
 		if (items.size() == 0) {
-			items.add(item);
+			items.add(lineItem);
 		} else {
-			for (LineItem listItem : items) {
-				if (listItem.getProduct().getId().equals(item.getProduct().getId())) {
-					listItem.setQuantity(listItem.getQuantity() + item.getQuantity());
-					isItemExist = false;
-					break;
-				}
-			}
-			if (isItemExist) {
-				items.add(item);
-			}
-
+			if (!isContains(lineItem))
+				items.add(lineItem);
 		}
 	}
 
 	public void removeLineItem(String lineItemId) {
 		for (LineItem item : items) {
-			if (item.getId().equals(lineItemId))
+			if (item.getId().equals(lineItemId)) {
 				items.remove(item);
-			break;
+				break;
+			}
 		}
 	}
 
@@ -51,6 +42,17 @@ public class Order {
 			totalOrderCost += item.itemCost();
 		}
 		return totalOrderCost;
+	}
+
+	public boolean isContains(LineItem lineItem) {
+		for (LineItem item : items) {
+			if (item.getProduct().getId().equals(lineItem.getProduct().getId())) {
+				item.setQuantity(item.getQuantity() + lineItem.getQuantity());
+				return true;
+			}
+		}
+		return false;
+
 	}
 
 	public String getId() {

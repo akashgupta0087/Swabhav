@@ -16,14 +16,14 @@ public class Remote {
 			door.close();
 		}else {
 			door.open();
-			final Timer timer = new Timer();
-			timer.schedule(new TimerTask() {
-				
-				@Override
-				public void run() {
-					door.close();
-				}
-			}, 5000);
+//			final Timer timer = new Timer();
+//			timer.schedule(new TimerTask() {
+//				
+//				@Override
+//				public void run() {
+//					door.close();
+//				}
+//			}, 5000);
 		}
 	}
 	

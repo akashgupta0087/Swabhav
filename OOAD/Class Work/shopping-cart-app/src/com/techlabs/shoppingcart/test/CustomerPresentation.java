@@ -34,9 +34,10 @@ public class CustomerPresentation {
 		order1.addLineItem(lineItem3);
 		order1.addLineItem(lineItem4);
 		order1.addLineItem(lineItem5);
+		order1.removeLineItem("L203");
 
-		order2.addLineItem(lineItem1);
-		order2.addLineItem(lineItem2);
+		order2.addLineItem(lineItem5);
+		order2.addLineItem(lineItem4);
 		order2.addLineItem(lineItem3);
 
 		Customer customer1 = new Customer("C401", "Sachin");
@@ -52,6 +53,7 @@ public class CustomerPresentation {
 		for (Order order : customer.getOrders()) {
 			System.out.println("\nOrder Id: " + order.getId() + " Date: " + order.getDate());
 			displayLineItems(order);
+			System.out.println("Total checkout price: " + order.checkOutPrice());
 		}
 	}
 
