@@ -12,7 +12,7 @@ public class LSPTest {
 	private static void shouldNotChangeHeight_IfWidthChanges(Rectangle rect) {
 		int beforeHeight = rect.getHeight();
 		
-		rect.setWidth();
+		rect.setWidth(20);
 		
 		int afterHeight = rect.getHeight();
 		
