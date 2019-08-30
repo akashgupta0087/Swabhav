@@ -10,9 +10,5 @@ public class Cell {
 	public Mark getMark() {
 		return mark;
 	}
-	
-	
-	
-	
 
 }

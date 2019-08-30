@@ -1,47 +1,65 @@
 package com.techlabs.game;
 
 public class ResultAnalyzer {
-	private Result result;
+	private Result result = Result.PROGRESS;
 	private Board board;
-	private static int count = 0;
+
 	public ResultAnalyzer(Board board) {
 		this.board = board;
 	}
-	
-	public Result analyze() {
-		count++;
-		// For row
-		for(int i = 0; i < 7; i+=3) {
-			if(board.getBoard()[i] == board.getBoard()[i+1] && board.getBoard()[i+1] == board.getBoard()[i+2])
-			result = Result.WIN;	
+
+	public void analyze() {
+
+		try {
+			// For row
+			for (int i = 0; i < 7; i += 3) {
+
+				if ((board.getBoard()[i].getMark() == board.getBoard()[i + 1].getMark()
+						&& board.getBoard()[i + 1].getMark() == board.getBoard()[i + 2].getMark()))
+					result = Result.WIN;
+			}
+		} catch (NullPointerException ex) {
 		}
-		
-		// For column
-		for(int i = 0; i < 3; i++) {
-			if(board.getBoard()[i] == board.getBoard()[i+3] && board.getBoard()[i+3] == board.getBoard()[i+6])
-				result = Result.WIN;
+
+		try {
+			// For column
+			for (int i = 0; i < 3; i++) {
+				if ((board.getBoard()[i].getMark() == board.getBoard()[i + 3].getMark()
+						&& board.getBoard()[i + 3].getMark() == board.getBoard()[i + 6].getMark()))
+					result = Result.WIN;
+			}
+		} catch (NullPointerException ex) {
 		}
-		
-		// For left diagonal
-		for(int i = 0; i < 3; i+=2) {
-			if(board.getBoard()[i] == board.getBoard()[i+4] && board.getBoard()[i+4] == board.getBoard()[i+8])
-				result = Result.WIN;
+
+		try {
+			// For left diagonal
+			for (int i = 0; i < 1; i++) {
+				if ((board.getBoard()[i].getMark() == board.getBoard()[i + 4].getMark()
+						&& board.getBoard()[i + 4].getMark() == board.getBoard()[i + 8].getMark()))
+					result = Result.WIN;
+			}
+		} catch (NullPointerException ex) {
 		}
-		
-		for(int i = 0; i == 0; i++) {
-			if(board.getBoard()[i] == board.getBoard()[i+4] && board.getBoard()[i+4] == board.getBoard()[i+8])
-				result = Result.WIN;
+
+		try {
+			// For right diagonal
+			for (int i = 2; i < 3; i++) {
+				if ((board.getBoard()[i].getMark() == board.getBoard()[i + 2].getMark()
+						&& board.getBoard()[i + 2].getMark() == board.getBoard()[i + 4].getMark()))
+					result = Result.WIN;
+			}
+		} catch (NullPointerException ex) {
 		}
-		
-		for(int i = 2; i == 0; i++) {
-			if(board.getBoard()[i] == board.getBoard()[i+2] && board.getBoard()[i+2] == board.getBoard()[i+4])
-				result = Result.WIN;
+
+		// For Draw
+		int count = 0;
+		for (int i = 0; i < board.getBoard().length; i++) {
+			if (board.getBoard()[i] != null)
+				count += 1;
 		}
-		
-		if(count == 9)
-			return Result.DRAW;
-		
-		return result = Result.PROGRESS;
+
+		if (count == board.getBoard().length)
+			result = Result.DRAW;
 	}
 
 	public Result getResult() {
@@ -50,6 +68,6 @@ public class ResultAnalyzer {
 
 	public Board getBoard() {
 		return board;
-	}	
+	}
 
 }
