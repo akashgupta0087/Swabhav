@@ -8,12 +8,13 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 
 public class URLFileLoader implements ILoadable<Employee>{
 
 	private String path;
-	private LinkedHashSet<Employee> employees = new LinkedHashSet<Employee>();
+	private HashMap<Integer,Employee> employees = new HashMap<Integer,Employee>();
 	private Parser parser = new Parser();
 
 	public URLFileLoader(String path) {
@@ -21,7 +22,7 @@ public class URLFileLoader implements ILoadable<Employee>{
 	}
 
 	@Override
-	public LinkedHashSet<Employee> loadData() {
+	public HashMap<Integer,Employee> loadData() {
 		String row = "";
 		try {
 			URL url = new URL(path);
@@ -32,7 +33,7 @@ public class URLFileLoader implements ILoadable<Employee>{
 			while ((row = csvReader.readLine()) != null) {
 				String[] data = row.split(",");
 				Employee employee = parser.parseEmloyeeDetails(data);
-				employees.add(employee);
+				employees.put(employee.getId(),employee);
 			}
 		} catch (MalformedURLException e) {
 			e.printStackTrace();

@@ -67,7 +67,11 @@ public class Employee {
 	public List<Employee> getSubordinates(){
 	     return subordinates;
 	   }
-	
+
+	public void setSubordinates(List<Employee> subordinates) {
+		this.subordinates = subordinates;
+	}
+
 	@Override
 	public int hashCode() {
 		return id;

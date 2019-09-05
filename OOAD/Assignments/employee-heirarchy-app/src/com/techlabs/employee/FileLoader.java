@@ -9,20 +9,21 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 
 public class FileLoader implements ILoadable<Employee> {
 
 	private String path;
-	private LinkedHashSet<Employee> employees = new LinkedHashSet<Employee>();
+	private static HashMap<Integer, Employee> employees = new HashMap<Integer, Employee>();
 
 	public FileLoader(String path) {
 		this.path = path;
 	}
 
 	@Override
-	public LinkedHashSet<Employee> loadData() {
+	public HashMap<Integer, Employee> loadData() {
 		String row = "";
 		Parser parser = new Parser();
 		try {
@@ -30,7 +31,7 @@ public class FileLoader implements ILoadable<Employee> {
 			while ((row = csvReader.readLine()) != null) {
 				String[] data = row.split(",");
 				Employee employee = parser.parseEmloyeeDetails(data);
-				employees.add(employee);
+				employees.put(employee.getId(),employee);
 			}
 			csvReader.close();
 

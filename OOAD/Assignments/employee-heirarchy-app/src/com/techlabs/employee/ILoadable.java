@@ -1,8 +1,8 @@
 package com.techlabs.employee;
 
-import java.util.LinkedHashSet;
+import java.util.HashMap;
 
 public interface ILoadable<T> {
-	LinkedHashSet<T> loadData();
+	HashMap<Integer,Employee> loadData();
 }
 
