@@ -36,6 +36,19 @@ public class EmployeeDataAnalyzer {
 			constructHeirarchyTree(emp);
 		}
 	}
+	
+	
+	private List<Employee> getSubordinatesById(int reportId) {
+		List<Employee> subordinates = new ArrayList<Employee>();
+		try {
+			for (Employee employee : employees.values()) {
+				if (employee.getManagerId() == reportId)
+					subordinates.add(employee);
+			}
+		} catch (NullPointerException ex) {
+		}
+		return subordinates;
+	}
 
 	public void printHeirarchyTree(Employee localRoot, int level) {
 		for (int i = 0; i < level; i++) {
@@ -50,17 +63,7 @@ public class EmployeeDataAnalyzer {
 		}
 	}
 
-	private List<Employee> getSubordinatesById(int reportId) {
-		List<Employee> subordinates = new ArrayList<Employee>();
-		try {
-			for (Employee employee : employees.values()) {
-				if (employee.getManagerId() == reportId)
-					subordinates.add(employee);
-			}
-		} catch (NullPointerException ex) {
-		}
-		return subordinates;
-	}
+
 
 	public static HashMap<Integer, Employee> getEmployees() {
 		return employees;
