@@ -1,5 +1,9 @@
 package com.techlabs.employee.test;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
@@ -18,7 +22,17 @@ public class EmployeeTest {
 		
 		analyzer.constructHeirarchyTree(root);
 		
-		analyzer.printHeirarchyTree(root, 0);
+		StringBuilder strBuild = analyzer.printHeirarchyTree(root, 0);
+		
+		
+		
+		File file = new File("Resources/employee.xml");
+		try(BufferedWriter bwriter = new BufferedWriter(new FileWriter(file))){
+			bwriter.write(strBuild.toString());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 //		for(Map.Entry employee: analyzer.getEmployees().entrySet()){
 //		System.out.println(employee.getKey() + " " + employee.getValue());
