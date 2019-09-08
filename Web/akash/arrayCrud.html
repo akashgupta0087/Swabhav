@@ -1,0 +1,39 @@
+<html>
+    <script>
+        var schoolItems = ["Book","Pencil","Sharpner","Eraser"]
+
+        function create(item) {
+            schoolItems.push(item)
+        }
+
+        function read() {
+            for (var i = 0; i < schoolItems.length; i++){
+                console.log(schoolItems[i]);
+            }
+        }
+
+        function update(position, item){
+            schoolItems[position] = item
+        }
+
+        function deleteItem(item) {
+            var index = schoolItems.indexOf(item);
+            if (index > -1) {
+                schoolItems.splice(index, 1);
+            }
+        }
+
+        read()
+        create("Bag")
+        console.log("\n")
+        read()
+        update(1,"Pen")
+        console.log("\n")
+        read()
+        deleteItem("Sharpner")
+        console.log("\n")
+        read()
+        
+
+    </script>
+</html>
