@@ -1,0 +1,17 @@
+<html>
+<script>
+    "use strict";
+    function changeColor(color) {
+        var body = document.getElementById("myBody")
+        //var color = document.getElementById("red").value
+        body.style.backgroundColor = color
+    }
+</script>
+    <body id = "myBody">
+        <center>
+            <button onclick="changeColor(innerHTML)" id = "red" value = "red">Red</button>         <!-- can also be done by this.value -->
+            <button onclick="changeColor(innerHTML)" id = "blue" value = "blue">Blue</button>
+        </center>
+
+
+</html>

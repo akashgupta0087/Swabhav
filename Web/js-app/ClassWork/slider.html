@@ -1,0 +1,30 @@
+<html>
+   
+    <body>
+        <input type = "range" min = "1" max = "100" id = "slider" value="1">
+        <h1><p>Value: <span id="demo"></span></p></h1>
+
+        <div id = "button"></div>
+    </body>
+    <script>
+        "use strict"
+            var slider = document.getElementById("slider")
+            var output = document.getElementById("demo")
+            output.innerHTML = slider.value
+    
+            slider.oninput = function(){
+                output.innerHTML = this.value
+                for(var i = 1; i <= output.innerHTML; i++){
+                var button = document.getElementById("button")
+                var element = document.createElement("button")
+                element.textContent = i;
+                button.appendChild(element)
+            }
+            }
+
+            
+
+
+
+        </script>
+</html>

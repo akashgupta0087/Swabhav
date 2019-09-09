@@ -1,0 +1,57 @@
+<html>
+<style>
+    #colorList {
+        width: 200px;
+        height: 50;
+    }
+
+    option {
+        font-size: 20px;
+    }
+</style>
+<script>
+
+    function changeColor() {
+        var body = document.getElementById("myBody")
+        var color = document.getElementById("colorList").value
+        body.style.backgroundColor = color
+    }
+
+    function changeColorFromArray(){
+        var body = document.getElementById("myBody")
+        var colorArray = document.getElementById("colorListArray").value
+        body.style.backgroundColor = colorArray
+    }
+</script>
+
+<body id="myBody">
+    <center>
+        <select id="colorList" onchange="changeColor()">
+            <option selected value="white">--select--</option>
+            <option value="#ff3333">Red</option>
+            <option value="#4db8ff">Blue</option>
+            <option value="#66ff66">Green</option>
+            <option value="#ffff33">Yellow</option>
+        </select>
+
+        <select id="colorListArray" onchange="changeColorFromArray()">
+            <option selected value = "white">--selected--</option>
+        </select>
+    </center>
+
+</body>
+
+<script>
+    var select = document.getElementById("colorListArray");
+    var options = ["Red", "Blue", "Green", "Yellow"];
+
+    for (var i = 0; i < options.length; i++) {
+        var opt = options[i];
+        var element = document.createElement("option");
+        element.textContent = opt;
+        element.value = opt;
+        select.appendChild(element);
+    }
+    </script>
+
+</html>

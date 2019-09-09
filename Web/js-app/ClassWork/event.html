@@ -1,0 +1,38 @@
+<html>
+    <head>
+    <style>
+       div {
+           border : 10px;
+       }
+    </style>
+<script>
+function wishText() {
+    var name = document.getElementById("input").value
+    var result = document.getElementById("result")
+    result.style.borderBottomStyle = 'double'
+    result.innerHTML = "Hello " + name + ", new to JS"
+}
+function clearText() {
+    document.getElementById("result").innerHTML = ""
+}
+</script>
+</head>
+<body>
+    <center>
+        <h1>
+            Event
+        </h1>
+        Name :
+        <input type="text" id = "input">
+        <button onclick="wishText()">Wish</button>
+        <button onclick="clearText()">Clear</button>
+        <br>
+
+        <div>
+        <h1 id="result"></h1>
+    </div>
+    </center>
+</body>
+</body>
+
+</html>

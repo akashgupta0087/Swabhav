@@ -1,0 +1,21 @@
+<html>
+    <script>
+        function clickCounter(){
+            if(typeof(Storage) !== "undefined") {
+            if(localStorage.clickCount){
+                localStorage.clickCount = Number(localStorage.clickCount) + 1;
+                }
+                else{
+                    localStorage.clickCount = 1;
+                }
+                console.log("You have pressed the button " + localStorage.clickCount + " times")
+            }
+    else {
+    console.log("Sorry, your browser does not support web storage...");
+        }
+            }
+    </script>
+    <body>
+       <p><button onclick="clickCounter()" type = "button">Click Here(local Storage)</button></p> 
+    </body>
+</html>

@@ -1,0 +1,63 @@
+<html>
+    <script>
+        var globalObject = "Hello "
+        function display(name){
+            return globalObject + name
+        }
+        console.log(display("Akash"))
+    </script>
+    <script>
+        console.log(this)
+        console.log(window)
+        console.log(this === window)
+        console.log(typeof(window))
+        console.log(typeof(this))
+        console.log(document)
+        console.log(console)
+        console.log(location)
+        console.log(typeof(document))
+        console.log(typeof(console))
+        console.log(typeof(location))
+    </script>
+
+    <script>
+        var foo = "akash"
+        console.log(this.foo)
+        console.log(window.foo)
+        console.log(typeof(foo))
+        
+        foo = 10
+        console.log(this.foo)
+        console.log(window.foo)
+        console.log(typeof(foo))
+
+        foo = true
+        console.log(this.foo)
+        console.log(window.foo)
+        console.log(typeof(foo))
+
+        foo = {
+
+        }
+        console.log(this.foo)
+        console.log(window.foo)
+        console.log(typeof(foo))
+
+        foo = function(){}
+        console.log(this.foo)
+        console.log(window.foo)
+        console.log(typeof(foo))
+
+        function add()
+        {
+            var num1 = 10
+            var num2 = 20
+            var result = num1 + num2
+            console.log(result)
+        }
+
+        console.log(this.add.num1)
+    
+
+    </script>
+</html>
