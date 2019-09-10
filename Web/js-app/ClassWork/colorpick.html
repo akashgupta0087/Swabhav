@@ -43,13 +43,12 @@
 
 <script>
     var select = document.getElementById("colorListArray");
-    var options = ["Red", "Blue", "Green", "Yellow"];
+    var options = [{color:"Red",hexcode:"#ff3333"}, {color:"Blue",hexcode:"#4db8ff"}, {color:"Green",hexcode:"#66ff66"}, {color:"Yellow",hexcode:"#ffff33"}];
 
     for (var i = 0; i < options.length; i++) {
-        var opt = options[i];
         var element = document.createElement("option");
-        element.textContent = opt;
-        element.value = opt;
+        element.textContent = options[i].color;
+        element.value = options[i].hexcode;
         select.appendChild(element);
     }
     </script>

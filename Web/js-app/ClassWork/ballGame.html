@@ -1,0 +1,116 @@
+<html>
+<style>
+    .button {
+        background-color: grey;
+        border: 2px solid white;
+        height: 70px;
+        width: 80px;
+        border-radius: 50%;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+    #restart,#enterGame {
+        background-color: grey;
+        border: 2px solid white;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+    h1,h3,
+    p {
+        color: white;
+    }
+</style>
+
+<body bgcolor="black">
+    <center>
+        <h1>Welcome to the Blue Ball Game</h1>
+        <div id="rules">
+            <h3>Rules for playing the game:</h3>
+            <p>1. You have to guess the blue ball</p>
+            <p>2. You have 3 attempts for that</p>
+            <p>3. Clicking on the lower ball than the blue ball will show red color</p>
+            <p>4. Clicking on the higher ball than the blue ball will show green color</p>
+            <button id = "enterGame" onclick="addButtons()">OK</button>
+        </div>
+        <div id="buttonArea"></div>
+        <h1><span id="attempts"></span>
+            <br>
+            <span id="gameRestart"></span>
+        </h1>
+    </center>
+</body>
+
+<script>
+    function addButtons() {
+        var attempts = 3
+        var randomNumber = Math.floor((Math.random() * 50) + 1);
+        document.getElementById("rules").innerHTML = ""
+        var attemptsNumber = document.getElementById("attempts")
+        attemptsNumber.innerHTML = "Attempts left : " + attempts
+        for (var i = 1; i <= 50; i++) {
+            var button = document.getElementById("buttonArea")
+            var element = document.createElement("button")
+            element.textContent = i;
+            element.className = "button"
+            element.addEventListener("click", function () {
+                attempts -= 1
+                attemptsNumber.innerHTML = "Attempts left : " + attempts
+                if (attempts >= 0) {
+                    if (this.innerHTML == randomNumber) {
+                        this.style.backgroundColor = "blue"
+                        attemptsNumber.innerHTML = "Win!!"
+                        makeRestartButton()
+                    }
+
+                    if (this.innerHTML < randomNumber) {
+                        this.style.backgroundColor = "red"
+                    }
+
+                    if (this.innerHTML > randomNumber) {
+                        this.style.backgroundColor = "green"
+                    }
+                }
+                else {
+                    attemptsNumber.innerHTML = "Game Over"  
+                    makeRestartButton()     
+                }
+            });
+            button.appendChild(element)
+        }
+
+        function makeRestartButton(){
+            var restartButton = document.createElement("button")
+                    restartButton.textContent = "Restart Game"
+                    restartButton.onclick = reload
+                    restartButton.id = "restart"
+                    document.getElementById("gameRestart").appendChild(restartButton)
+                    var elements = document.getElementById("buttonArea").querySelectorAll('button')
+                        for(var i = 0; i < elements.length; i++){
+                            elements[i].disabled = true
+                            console.log(elements[i].value)
+                        }
+        }
+
+        function reload() {
+            document.location.reload()
+        }
+
+
+    }
+</script>
+
+</html>

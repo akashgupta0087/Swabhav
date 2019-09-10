@@ -1,0 +1,55 @@
+<html>
+<style>
+    button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+</style>
+
+<body bgcolor="cyan">
+    <center>
+        <br>
+        <h1>
+            Set Timeout : <span id="setTimeOut"></span>
+            <br>
+            <button id="stopTimeout" onclick="clearTimeout(setTimeout)">Stop set timeout</button>
+            <br>
+            <br>
+            <br>
+            <br>
+            Set Interval : <span id = "setInterval"></span>
+            <br>
+            <button id = "stopInterval" onclick="clearTimeout(setInterval)">Stop set interval</button>
+        </h1>
+    </center>
+
+</body>
+<script>
+    'use strict'
+    var setTimeout = setTimeout(timeout, 2000)
+
+    function timeout() {
+        document.getElementById("setTimeOut").innerHTML = "Hello World!"
+    }
+</script>
+   
+<script>
+    'use strict'
+    var setInterval = setInterval(interval,1000)
+
+    function interval(){
+        var d = new Date()
+        document.getElementById("setInterval").innerHTML = d.toLocaleTimeString()
+    }
+    
+</script>
+
+</html>
