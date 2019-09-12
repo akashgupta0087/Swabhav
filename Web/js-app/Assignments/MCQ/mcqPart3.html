@@ -1,0 +1,180 @@
+<html>
+<style>
+    #queId,
+    #question {
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    label,
+    button {
+        font-size: 20px;
+    }
+
+    #queStatus {
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    #mainArea {
+        margin-left: 30%;
+    }
+
+    h1 {
+        text-align: center;
+    }
+</style>
+
+<body>
+    <h1>Welcome</h1>
+    <div id=mainArea>
+        <span id="queId"></span>
+        <span id="question"></span>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp;
+        <span id="queStatus"></span>
+        <br>
+        <br>
+        <input type="radio" name=option id="radio1" value=""> <label id="option1"></label>
+        <br>
+        <br>
+        <input type="radio" name=option id="radio2" value=""> <label id="option2"></label>
+        <br>
+        <br>
+        <input type="radio" name=option id="radio3" value=""> <label id="option3"></label>
+        <br>
+        <br>
+        <input type="radio" name=option id="radio4" value=""> <label id="option4"></label>
+        <br>
+        <br>
+        <button id="next" onclick="clickButton()">Next</button>
+    </div>
+    <div>
+        <h1 id="score"></h1>
+        <canvas id="myCanvas" width="1024" height="760">
+            Your browser does not support the HTML5 canvas tag.</canvas>
+        <span id="rightAnswer"></span>
+        <span id="wrongAnswer"></span>
+    </div>
+</body>
+
+
+<script>
+    var counter = 0;
+    var score = 0;
+
+    var mcqArray
+    var mcq = []
+    var questionNumber = 0;
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "mcqFile10Questions.json", true);
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            mcqArray = JSON.parse(this.responseText)
+            console.log(mcqArray)
+            while (mcq.length < 5) {
+                if(mcq.length == 0){
+                    mcq.push(mcqArray[Math.floor(Math.random() * mcqArray.length)])
+                }
+                else{
+                    randomNumber = Math.floor(Math.random() * mcqArray.length)
+                    if(contains(mcqArray[randomNumber].queId) == false){
+                        mcq.push(mcqArray[randomNumber])
+                    }   
+                } 
+            }
+
+            function contains(value){
+                var flag = false;
+                for(var i = 0; i < mcq.length; i++){
+                    if(mcq[i].queId == value){
+                        flag = true;
+                    }
+                }
+                return flag
+            }
+
+            console.log(mcq)
+            loadArray();
+        }
+    };
+    xhttp.send();
+
+    function loadArray() {
+        if (counter < 5) {
+            document.getElementById("queId").innerHTML = "Q. " + mcq[counter].queId;
+            document.getElementById("question").innerHTML = mcq[counter].question
+            document.getElementById("option1").innerHTML = mcq[counter].option1;
+            document.getElementById("radio1").value = mcq[counter].option1;
+            document.getElementById("option2").innerHTML = mcq[counter].option2;
+            document.getElementById("radio2").value = mcq[counter].option2;
+            document.getElementById("option3").innerHTML = mcq[counter].option3;
+            document.getElementById("radio3").value = mcq[counter].option3;
+            document.getElementById("option4").innerHTML = mcq[counter].option4;
+            document.getElementById("radio4").value = mcq[counter].option4;
+            document.getElementById("queStatus").innerHTML = (++questionNumber) + " of 5"
+
+        }
+        else {
+            document.getElementById("mainArea").innerHTML = ""
+            document.getElementById("score").innerHTML = "You have scored " + score + " out of 5." + "  ("+(score*20) + "% right  " + ((5-score)*20) +"% wrong" + ")"
+            document.getElementById("myCanvas").innerHTML = displayPieChart();
+            document.getElementsById("rightAnswer").innerHTML = "Green color: Right answers"
+            document.getElementById("wrongAnswer").innerHTML = "Red color: Wrong answers"
+        }
+    }
+
+    function clickButton() {
+        checkAnswer(counter)
+        loadArray()
+    }
+
+
+
+    function checkAnswer(index) {
+        if (document.getElementById("radio1").checked) {
+            if (document.getElementById("radio1").value == mcq[index].answer) {
+                score += 1;
+            }
+        }
+        if (document.getElementById("radio2").checked) {
+            if (document.getElementById("radio2").value == mcq[index].answer) {
+                score += 1;
+            }
+        }
+        if (document.getElementById("radio3").checked) {
+            if (document.getElementById("radio3").value == mcq[index].answer) {
+                score += 1;
+            }
+        }
+        if (document.getElementById("radio4").checked) {
+            if (document.getElementById("radio4").value == mcq[index].answer) {
+                score += 1;
+            }
+        }
+        counter += 1;
+    }
+
+    function displayPieChart() {
+        scorePercent = (score * 20) / 100
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        ctx.beginPath();
+        ctx.arc(640, 200, 150, 0, 2 * (Math.PI));
+        ctx.stroke();
+        ctx.fillStyle = "red"
+        ctx.fill()
+
+        ctx.beginPath();
+        ctx.moveTo(640, 200);
+        ctx.arc(640, 200, 150, 0, (scorePercent * 2) * (Math.PI));
+        ctx.stroke();
+        ctx.fillStyle = "green"
+        ctx.fill()
+    }
+
+
+
+</script>
+
+</html>

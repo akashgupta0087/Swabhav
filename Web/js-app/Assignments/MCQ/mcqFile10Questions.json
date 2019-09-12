@@ -1,0 +1,90 @@
+[{
+        "queId": "1",
+        "question": "Which is the fastest land animal.",
+        "option1": "Horse",
+        "option2": "Cheetah",
+        "option3": "Lion",
+        "option4": "Deer",
+        "answer": "Cheetah"
+    },
+    {
+        "queId": "2",
+        "question": "The first country to send man on moon.",
+        "option1": "Russia",
+        "option2": "China",
+        "option3": "Japan",
+        "option4": "USA",
+        "answer": "USA"
+    },
+    {
+        "queId": "3",
+        "question": "First country to step in space.",
+        "option1": "India",
+        "option2": "USA",
+        "option3": "Russia",
+        "option4": "Japan",
+        "answer": "Russia"
+    },
+    {
+        "queId": "4",
+        "question": "First country to issue paper currency.",
+        "option1": "India",
+        "option2": "France",
+        "option3": "USA",
+        "option4": "China",
+        "answer": "China"
+    },
+    {
+        "queId": "5",
+        "question": "Which is the world's first artificial satellite.",
+        "option1": "Aryabhata",
+        "option2": "Sputnik-1",
+        "option3": "Astrosat",
+        "option4": "ISS",
+        "answer": "Sputnik-1"
+    },
+    {
+        "queId": "6",
+        "question": "Who invented light bulb.",
+        "option1": "Thomas Alva Edison",
+        "option2": "Alexander Graham Bell",
+        "option3": "Nikola Tesla",
+        "option4": "Charles Babbage",
+        "answer": "Thomas Alva Edison"
+    },
+     {
+        "queId": "7",
+        "question": "Who is the CEO of Amazon.",
+        "option1": "Bill Gates",
+        "option2": "Mark Zukerberg",
+        "option3": "Sundar Pichai",
+        "option4": "Jeff Bezos",
+        "answer": "Jeff Bezos"
+    },
+     {
+        "queId": "8",
+        "question": "In which year facebook was started.",
+        "option1": "2005",
+        "option2": "2004",
+        "option3": "2007",
+        "option4": "2006",
+        "answer": "2004"
+    },
+     {
+        "queId": "9",
+        "question": "In which year whatsapp was started.",
+        "option1": "2004",
+        "option2": "2008",
+        "option3": "2009",
+        "option4": "2010",
+        "answer": "2009"
+    },
+     {
+        "queId": "10",
+        "question": "What is the financial capital of India.",
+        "option1": "New Delhi",
+        "option2": "Mumbai",
+        "option3": "Surat",
+        "option4": "Kolkata",
+        "answer": "Sputnik-1"
+    }]

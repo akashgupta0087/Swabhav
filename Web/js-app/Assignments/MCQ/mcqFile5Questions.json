@@ -1,0 +1,45 @@
+[{
+        "queId": "1",
+        "question": "Which is the fastest land animal.",
+        "option1": "Horse",
+        "option2": "Cheetah",
+        "option3": "Lion",
+        "option4": "Deer",
+        "answer": "Cheetah"
+    },
+    {
+        "queId": "2",
+        "question": "The first country to send man on moon.",
+        "option1": "Russia",
+        "option2": "China",
+        "option3": "Japan",
+        "option4": "USA",
+        "answer": "USA"
+    },
+    {
+        "queId": "3",
+        "question": "First country to step in space.",
+        "option1": "India",
+        "option2": "USA",
+        "option3": "Russia",
+        "option4": "Japan",
+        "answer": "Russia"
+    },
+    {
+        "queId": "4",
+        "question": "First country to issue paper currency.",
+        "option1": "India",
+        "option2": "France",
+        "option3": "USA",
+        "option4": "China",
+        "answer": "China"
+    },
+    {
+        "queId": "5",
+        "question": "Which is the world's first artificial satellite.",
+        "option1": "Aryabhata",
+        "option2": "Sputnik-1",
+        "option3": "Astrosat",
+        "option4": "ISS",
+        "answer": "Sputnik-1"
+    }]

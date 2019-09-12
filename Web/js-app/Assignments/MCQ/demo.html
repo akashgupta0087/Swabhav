@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Content as Array.</h2>
+<p>Content written as an JSON array will be converted into a JavaScript array.</p>
+
+<p id="demo"></p>
+
+<script>
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.open("GET", "mcqFile.json", true);
+
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    var myArr = JSON.parse(this.response);
+    document.getElementById("demo").innerHTML = myArr[0].question;
+  }
+};
+
+xmlhttp.send();
+</script>
+
+
+</body>
+</html>
