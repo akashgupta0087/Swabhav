@@ -1,0 +1,35 @@
+<html>
+    <body>
+    <h2>Numbers API Part 1</h2>
+    <h1>Enter a number: <input type = "text" id = "number"></h1>
+    <button onclick="load()">Submit</button>
+    <br>
+    <img id="loading">
+    <p id="numberFacts"></p>
+</body>
+
+<script>
+    'use strict'
+
+    function load(){
+        document.getElementById("loading").src = "Spinner-1s-200px.gif";
+        setTimeout(getNumberFacts,2000)
+    }
+
+    function getNumberFacts(){
+    document.getElementById("loading").src = ""
+    var number = document.getElementById("number")
+    var displayFacts = document.getElementById("numberFacts")
+
+    var xhttp = new XMLHttpRequest();
+    var link = "http://numbersapi.com/" + number.value
+    xhttp.open("GET",link, true)
+    xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            displayFacts.innerHTML = this.responseText
+        }
+    }
+    xhttp.send();
+    }
+</script>
+</html>
