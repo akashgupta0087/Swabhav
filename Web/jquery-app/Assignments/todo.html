@@ -1,0 +1,100 @@
+<html>
+<style>
+    #textbox {
+        height: 50px;
+        width: 500px;
+    }
+</style>
+
+<body>
+    <h1>
+        Task : <input type="text" id="textbox">
+    </h1>
+    <input type="radio" name="priority" value="high">High
+    <input type="radio" name="priority" value="low">Low
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <button id="submit">Add</button>
+    <div id="mainArea">
+    </div>
+</body>
+
+<script src="../jquery-3.4.1.js"></script>
+<script src="../moment.js"></script>
+<script>
+
+    var tasks = []
+
+    function Task(taskValue, priority, id, currentTime) {
+        this.taskValue = taskValue
+        this.priority = priority
+        this.id = id
+        this.currentTime = currentTime
+    }
+
+    $("#submit").click(addTask)
+
+    function addTask() {
+        var textbox = $("#textbox")
+        var mainArea = $("#mainArea")
+        var priorityValue = $("input[name='priority']:checked").val()
+        var currentDate = new Date();
+        var formattedDateTime = currentDate.getFullYear() + "/" + (currentDate.getMonth() + 1) + "/" + currentDate.getDate() + " " + currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds()
+        console.log(formattedDateTime)
+        var id = currentDate.getFullYear() + "" + (currentDate.getMonth() + 1) + "" + currentDate.getDate() + "" + currentDate.getHours() + "" + currentDate.getMinutes() + "" + currentDate.getSeconds() + "" + currentDate.getMilliseconds()
+        var relativeTime = moment(formattedDateTime, "YYYY/MM/DD hh:mm:ss").fromNow();
+        console.log(relativeTime)
+        console.log("Priority=" + priorityValue)
+
+        var task = new Task(textbox.val(), priorityValue, id, formattedDateTime)
+        console.log(task.priority)
+
+
+        tasks = JSON.parse(localStorage.getItem("taskArray"))
+        tasks.push(task)
+        localStorage.setItem("taskArray", JSON.stringify(tasks))
+
+        if (task.priority == "high") {
+            console.log("Created")
+            loadTask(task,id,"red")
+           
+        }
+
+        if (task.priority == "low") {
+            console.log("Created")
+           loadTask(task,id,"yellow")
+        }
+    }
+
+    function loadPrevious(){
+        var tasks = JSON.parse(localStorage.getItem("taskArray"))
+        for (var i = 0; i < tasks.length; i++) {
+    }
+
+    function loadTask(task,id,background){
+        mainArea.prepend("<br> <span id=" + id + ">" + task.taskValue + "</span> <button id=b" + id + ">X</button> <span id=d" + id + ">" + relativeTime + " </span>")
+            $("#" + id).css({ "background": background, "font-size": "20px" })
+            $("#b" + id).css({ "border-radius": "50%" })
+            $("#d" + id).css({ "color": "gray" })
+            $("#b" + id).click(function () {
+                deleteCurrentTask(id)
+            })
+    }
+
+    function deleteCurrentTask(id) {
+        var deleteCurrentTask = confirm("Do you want to delete the current task")
+        if (deleteCurrentTask == true) {
+            $("#" + id).remove()
+            $("#b" + id).remove()
+            $("#d" + id).remove()
+            for (var i = 0; i < tasks.length; i++) {
+                if (tasks[i].id == id) {
+                    tasks.splice(i, 1)
+                    localStorage.setItem("taskArray", JSON.stringify(tasks))
+                }
+            }
+        }
+    }
+
+
+    }
+</script>

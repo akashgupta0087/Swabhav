@@ -1,0 +1,125 @@
+<html>
+<style>
+    #textbox {
+        height: 50px;
+        width: 500px;
+    }
+</style>
+
+<body>
+    <h1>
+        Task : <input type="text" id="textbox">
+    </h1>
+    <input type="radio" name="priority" value="high">High
+    <input type="radio" name="priority" value="low">Low
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <button id="submit">Add</button>
+    <div id="mainArea">
+    </div>
+</body>
+
+<script src="../jquery-3.4.1.js"></script>
+<script src="../moment.js"></script>
+<script>
+
+    var textValues = []
+    var mainArea = $("#mainArea")
+    var textbox = $("#textbox")
+
+    $("#submit").click(addTask)
+
+    function addTask() {
+        var priority = $("input[name='priority']:checked").val()
+        console.log(textValues)
+
+        if (priority == "high") {
+            loadTask("high", "red")
+
+        }
+        if (priority == "low") {
+            loadTask("low", "yellow")
+            // textValues = JSON.parse(localStorage.getItem("t"))
+            // textValues.push({ key: "low", value: textbox.val() })
+            // localStorage.setItem("t", JSON.stringify(textValues))
+        }
+    }
+
+    function loadTask(classValue, backgroundColor) {
+        var randomId = Math.floor(Math.random() * 26) + Date.now();
+        var randomButtonId = Math.floor(Math.random() * 28) + Date.now();
+
+        var currentDate = new Date();
+        var formattedDateTime = currentDate.getFullYear() + "/" + (currentDate.getMonth() + 1) + "/" + currentDate.getDate() + " " + currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds()
+        console.log(formattedDateTime)
+        var relativeTime = moment(formattedDateTime, "YYYY/MM/DD hh:mm:ss").fromNow();
+        console.log(relativeTime)
+
+        mainArea.prepend("<br> <span class='" + classValue + "' id='" + randomId + "'>" + textbox.val() + "</span>" + "<button class='remove' id=" + randomButtonId + ">" + "X</button>" + "<span id=time>" + relativeTime + "</span>")
+        $("." + classValue).css({ "background": backgroundColor, "font-size": "20px" })
+        $(".remove").css({ "border-radius": "50%" })
+
+        if (textValues.length != null) {
+            textValues = JSON.parse(localStorage.getItem("t"))
+        }
+        textValues.push({ priority: classValue, task: textbox.val(), id: randomId, currentTime: formattedDateTime })
+        localStorage.setItem("t", JSON.stringify(textValues))
+
+        $("#" + randomButtonId).click(function () {
+            var deleteCurrentTask = confirm("Do you want to delete the current task")
+            if (deleteCurrentTask == true) {
+                $("#" + randomId).remove()
+                $("#" + randomButtonId).remove()
+                $("#time").remove()
+                for (var i = 0; i < textValues.length; i++) {
+                    if (textValues[i].id == randomId) {
+                        textValues.splice(i, 1)
+                        localStorage.setItem("t", JSON.stringify(textValues))
+                    }
+                }
+            }
+        })
+    }
+
+
+    loadPrevious()
+
+    function loadPrevious() {
+
+        var textValues = JSON.parse(localStorage.getItem("t"))
+        for (var i = 0; i < textValues.length; i++) {
+            var relativeTime = moment(textValues[i].currentTime, "YYYY/MM/DD hh:mm:ss").fromNow();
+            if (textValues[i].priority == "high") {
+                mainArea.prepend("<br> <span class=high id=high>" + textValues[i].task + "</span>" + "<button class='remove' id='removeButton'>" + "X</button>" + "<span id=time>" + relativeTime + "</span>")
+                $(".high").css({ "background": "red", "font-size": "20px" })
+                $(".remove").css({ "border-radius": "50%" })
+                $("#removeButton").click(function () {
+                    var deleteCurrentTask = confirm("Do you want to delete the current task")
+                    if (deleteCurrentTask == true) {
+                        $("#high").remove()
+                        $("#removeButton").remove()
+                        $("#time").remove()
+                    }
+                })
+            }
+            if (textValues[i].priority == "low") {
+                mainArea.prepend("<br> <span class=low id=low>" + textValues[i].task + "</span>" + "<button class='remove' id='removeButton'>" + "X</button>" + "<span id=time>" + relativeTime + "</span>")
+                $(".low").css({ "background": "yellow", "font-size": "20px" })
+                $(".remove").css({ "border-radius": "50%" })
+                $("#removeButton").click(function () {
+                    var deleteCurrentTask = confirm("Do you want to delete the current task")
+                    if (deleteCurrentTask == true) {
+                        $("#low").remove()
+                        $("#removeButton").remove()
+                        $("#time").remove()
+                    }
+                })
+            }
+        }
+    }
+
+
+
+</script>
+
+
+</html>
