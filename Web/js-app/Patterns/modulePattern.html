@@ -1,0 +1,28 @@
+<script>
+    function makeStudent(){
+        var obj = {}
+        var _rollNo, _name
+
+        obj.setRollNo = function(rollNo){
+            if(rollNo > 0){
+                _rollNo = rollNo
+            }
+        }
+
+        obj.setName = function(name){
+            _name = name
+        }
+
+        obj.getDetails = function(){
+            return "Roll No.:" + _rollNo + " Name:" + _name
+        }
+
+        return obj;
+    }
+
+    var s1 = makeStudent()
+    s1.setRollNo(10)
+    s1.setName("Sachin")
+    console.log(s1)
+    console.log(s1.getDetails())
+</script>

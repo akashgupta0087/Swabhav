@@ -1,0 +1,18 @@
+<script>
+    function Student(pId, pName, PCgpi){
+        this.id = pId
+        this.name = pName
+        this.cgpi = PCgpi
+        this.getDetails = function(){
+            return "Id is : " + pId + " Name is: " + pName + " CGPI is : " + PCgpi
+        }
+    }
+
+    var s1 = new Student(101,"Akash",7.83)
+    console.log(s1)
+    console.log(s1.getDetails())
+
+    var s2 = new Student(102,"Floyd",6.75)
+    console.log(s2)
+    console.log(s2.getDetails())
+</script>

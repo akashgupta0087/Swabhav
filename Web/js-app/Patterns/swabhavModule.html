@@ -1,0 +1,30 @@
+<script>
+    function swabhav() {
+        var obj = {}
+
+        obj.cubeEvenNumber = function (number) {
+            if (number % 2 == 0) {
+                return number * number * number;
+            }
+            return "Odd numbers can't be cubed"
+        }
+
+        obj.checkPrimeNumber = function (number) {
+            for (var i = 2; i <= number / 2; i++) {
+                if (number % i == 0)
+                    return "Non prime number"
+            }
+            return "Prime number"
+        }
+
+        return obj;
+    }
+
+    var s1 = swabhav()
+    console.log("Cube of 2 is " + s1.cubeEvenNumber(2))
+    console.log("5 is a " + s1.checkPrimeNumber(5))
+
+    console.log("Cube of 5 is " + s1.cubeEvenNumber(5))
+    console.log("8 is a " + s1.checkPrimeNumber(8))
+
+</script>

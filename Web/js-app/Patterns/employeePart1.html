@@ -1,0 +1,19 @@
+<script>
+    function Employee(id, name) {
+        this.id = id
+        this.name = name
+
+        this.showDetails = function () {
+            setTimeout(function () {
+                console.log(this.name)
+                console.log(this.id)
+                console.log("After 2 seconds")
+                console.log(this)
+            }, 2000)
+        }
+    }
+
+    var emp1 = new Employee(101,"Sachin")
+    emp1.showDetails()
+</script>
+
