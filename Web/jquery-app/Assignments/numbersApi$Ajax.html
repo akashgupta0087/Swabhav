@@ -1,0 +1,54 @@
+<html>
+
+<body>
+    <h2>Numbers API Part 3</h2>
+    <h1>Enter a number: <input type="text" id="number"></h1>
+    <button onclick="load()">Submit</button>
+    <br>
+    <img id="loading">
+    <div id="numberFacts"></div>
+</body>
+
+<script src="../jquery-3.4.1.js"></script>
+<script>
+    'use strict'
+
+    var facts = []
+    var displayFacts = document.getElementById("numberFacts")
+
+    loadPreviousFacts()
+
+    function load() {
+        document.getElementById("loading").src = "Spinner-1s-200px.gif";
+        setTimeout(getNumberFacts, 2000)
+    }
+
+    function getNumberFacts() {
+        document.getElementById("loading").src = ""
+        var number = document.getElementById("number")
+
+        var link = "http://numbersapi.com/" + number.value
+
+        $.ajax({
+            url: link, success: function (result) {
+                displayFacts.prepend(result)
+                facts = localStorage.getItem("factsArray") ? JSON.parse(localStorage.getItem("factsArray")) : []
+                facts.push(result)
+                localStorage.setItem("factsArray", JSON.stringify(facts))
+            }
+        })
+
+        console.log("Inside function")
+    }
+
+    console.log("Outside function")
+
+    function loadPreviousFacts() {
+        facts = JSON.parse(localStorage.getItem("factsArray"))
+        for (var i = 0; i < facts.length; i++) {
+            displayFacts.innerHTML = "<br>" + facts[i] + displayFacts.innerHTML
+        }
+    }
+</script>
+
+</html>

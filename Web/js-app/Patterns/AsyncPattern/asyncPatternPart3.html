@@ -1,0 +1,19 @@
+<script>
+    function getDataAsync(fnSuccess,fnError){
+
+        setTimeout(function(){var d = Math.floor(Math.random() * 100)
+        if(d >= 50)
+            fnSuccess({data:d})
+        else
+            fnError({ errMsg: "Error: " + d + " is less than 50"})
+        },0)
+    }
+
+    getDataAsync(function(obj){
+        console.log("Data is " + obj.data)
+    }, function(obj){
+        console.log("Error message is " + obj.errMsg)
+    })
+
+    console.log("End of script")
+</script>
