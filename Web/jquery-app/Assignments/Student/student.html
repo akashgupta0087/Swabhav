@@ -1,0 +1,139 @@
+<html>
+<style>
+</style>
+
+<head>
+        <link rel="stylesheet" href="../../../bootstrap-app/bootstrap-3.4.1-dist/css/bootstrap.css">
+</head>
+
+<body>
+    <div id="form">
+        <form method="GET">
+            Roll No. : <input type="number" min=0 max=100 id="rollNo" required>
+            <br>
+            <br>
+            Name : <input type="text" id="name" required>
+            <br>
+            <br>
+            Age : <input type="number" min=0 max=150 id="age" required>
+            <br>
+            <br>
+            Email : <input type="email" id="email" required>
+            <br>
+            <br>
+            Date : <input type="date" data-date-inline-picker="true" id="date" required>
+            <br>
+            <br>
+            <input type="radio" id="male" name="gender" value="male" required>Male
+            <input type="radio" id="female" name="gender" value="female" required>Female
+            <br>
+            <br>
+            <input type="button" value="Add" onclick="addStudent()">
+        </form>
+    </div>
+    <div id="table"></div>
+</body>
+
+<script src="../../jquery-3.4.1.js"></script>
+
+<script>
+
+    function Student(rollNo, name, age, email, date, isMale) {
+        this.rollNo = rollNo
+        this.name = name
+        this.age = age
+        this.email = email
+        this.date = date
+        this.isMale = isMale
+    }
+
+    function addStudent() {
+        console.log("Inside addStduent()")
+
+        var rollNo = $("#rollNo").val()
+        var name = $("#name").val()
+        var age = $("#age").val()
+        var email = $("#email").val()
+        var date = $("#date").val()
+        var gender = $("input[name='gender']:checked").val()
+        var isMale = false
+
+        if (gender == "male") {
+            isMale = true
+        }
+
+        var student = new Student(rollNo, name, age, email, date, isMale)
+
+        putData(student)
+
+    }
+
+    getData();
+
+    function getData() {
+        var students = []
+        var txt = ""
+        $.ajax({
+            type:"GET",
+            url: "http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students", success: function (result) {
+                students = result
+                console.log(students)
+                txt += "<table border='1'> <br> <tr> <td>Id</td> <td>RollNo</td> <td>Name</td> <td>Age</td> <td>Email</td> <td>Date</td> <td>IsMale</td> <td>Delete</td></tr>"
+                for (var i = 0; i < students.length; i++) {
+                    txt += "<tr id="+students[i].id+"><td>" + students[i].id + "</td>"
+                        + "<td>" + students[i].rollNo + "</td>"
+                        + "<td>" + students[i].name + "</td>"
+                        + "<td>" + students[i].age + "</td>"
+                        + "<td>" + students[i].email + "</td>"
+                        + "<td>" + students[i].date + "</td>"
+                        +"<td>" + students[i].isMale + "</td>"
+                        + "<td> <button class='glyphicon glyphicon-remove' onclick='deleteData("+students[i].id+")'></button></td> </tr>";
+                }
+                txt += "</table>"
+                document.getElementById("table").innerHTML = "Found " + i + " students" + "<br>" + txt
+            }
+        })
+    }
+    
+    function putData(objData){
+            $.ajax({
+            type: "POST",
+            url: "http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students",
+            data: objData,
+            success:function(data){
+                alert("Success")
+            },
+
+            error:function(data){
+                alert("Error")
+            }
+
+            }
+            )
+
+            // $.post("http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students",objData,function(data,status){
+            //     alert("Data: " + data + "Status: " + status)
+            // })
+        }
+
+    function deleteData(id){
+        $.ajax({
+            type: "DELETE",
+            url: "http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/"+id,
+
+            success:function(data){
+                alert("Success")
+            },
+
+            error:function(data){
+                alert("Error")
+            }
+
+            }
+            )
+
+    }
+
+</script>
+
+</html>
