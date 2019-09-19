@@ -1,0 +1,23 @@
+<script>
+    function cubeEven(number) {
+        return new Promise(function (resolve, reject) {
+            if (number % 2 == 0) {
+                resolve({ data: number * number * number })
+            }
+            else {
+                reject({ err: "Odd numbers can't be cubed" })
+            }
+        })
+    }
+
+    cubeEven(2)
+        .then(function (fromResolve) {
+            return cubeEven(fromResolve.data)
+        }).then(function (r) {
+            console.log(r.data)
+        }).catch(function (fromReject) {
+            console.log(fromReject.err)
+        })
+
+    console.log("End of script")
+</script>

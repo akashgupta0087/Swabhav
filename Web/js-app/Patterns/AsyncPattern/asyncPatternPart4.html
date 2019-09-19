@@ -1,0 +1,20 @@
+<script>
+function cubeEven(number){
+        return new Promise(function(resolve,reject){
+            if(number % 2 == 0){
+                resolve({data:number*number*number})
+            }
+            else{
+                reject({err:"Odd numbers can't be cubed"})
+            }
+        })
+}
+
+cubeEven(10).then(function(fromResolve){
+    console.log(fromResolve.data)
+}).catch(function(fromReject){
+    console.log(fromReject.err)
+})
+
+console.log("End of script")
+</script>

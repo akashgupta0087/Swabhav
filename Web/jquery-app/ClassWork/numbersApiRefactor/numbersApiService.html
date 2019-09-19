@@ -1,0 +1,45 @@
+<html>
+    <head>
+            <script src="../../jquery-3.4.1.js"></script>
+            <script src="numbersApiService.js"></script>
+    </head>
+
+<body>
+    <h2>Numbers API Part 3</h2>
+    <h1>Enter a number: <input type="text" id="number"></h1>
+    <button onclick="load()">Submit</button>
+    <br>
+    <img id="loading">
+    <div id="numberFacts"></div>
+</body>
+
+
+<script>
+
+    var displayFacts = document.getElementById("numberFacts")
+
+    loadPrevious()
+
+    function load() {
+        document.getElementById("loading").src = "Spinner-1s-200px.gif";
+        setTimeout(onGetClick, 2000)
+    }
+
+    function onGetClick() {
+        document.getElementById("loading").src = ""
+        var inputNumber = document.getElementById("number").value
+
+        numbersApi.getFacts(inputNumber).then(function (fromResolve) {
+            displayFacts.prepend(fromResolve)
+        })
+    }
+
+    function loadPrevious() {
+        var facts = []
+        facts = numbersApi.loadPreviousFacts()
+        for (var i = 0; i < facts.length; i++) {
+            displayFacts.innerHTML = "<br>" + facts[i] + displayFacts.innerHTML
+        }
+    }
+
+</script>
