@@ -1,0 +1,18 @@
+<script>
+    function Student(id, name){
+        this.id = id
+        this.name = name
+
+        this.showDetails = function(){
+            setTimeout(()=>{
+                console.log(this.id,this.name)
+            })
+        }
+    }
+
+    var s1 = new Student(101,"Akash")
+
+    s1.showDetails()
+
+
+</script>

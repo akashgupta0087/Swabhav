@@ -1,0 +1,30 @@
+<script>
+    let cubeEven = (fnSuccess,fnError)=>{
+        var d = Math.floor(Math.random() * 100)
+
+        if(d % 2 == 0)
+            fnSuccess({num:d, cube:d*d*d})
+        else
+            fnError({err:"Odd number "+ d +" can't be cubed"})
+    }
+
+    cubeEven((obj)=>{
+        console.log("Cube of "+ obj.num +": " + obj.cube)
+    }, (obj)=>{
+        console.log(obj.err)
+    })
+</script>
+
+<script>
+    let cubeEvenNumber=(number)=>{
+        return new Promise((resolve,reject)=>{
+            (number%2==0) ? resolve({data:number*number*number}) : reject({err:"Odd numbers can't be cubed"})
+        })   
+    }
+
+    cubeEvenNumber(8).then((r)=>{
+        console.log("Cube is: "+r.data)
+    }).catch((r)=>{
+        console.log(r.err)
+    })
+</script>

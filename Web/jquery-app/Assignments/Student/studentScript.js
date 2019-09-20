@@ -34,6 +34,7 @@ function addStudent() {
 getData();
 
 function getData() {
+    $("#addButton").attr("disabled", true)
     document.getElementById("table").innerHTML = " "
     document.getElementById("loading").src = "Spinner-1s-200px.gif"
     var txt = ""
@@ -43,13 +44,8 @@ function getData() {
             document.getElementById("loading").style.display = "none"
             students = result
             console.log(students)
-            txt += "<table id=tableArea class='table' border='1'> <br> <tr> <td>Id</td> <td>RollNo</td> <td>Name</td> <td>Age</td> <td>Email</td> <td>Date</td> <td>Gender</td> <td>Update</td> <td>Delete</td></tr>"
+            txt += "<table id=tableArea class='table table-bordered'> <br> <tr> <th>Id</th> <th>RollNo</th> <th>Name</th> <th>Age</th> <th>Email</th> <th>Date</th> <th>Gender</th> <th>Update</th> <th>Delete</th></tr>"
             for (var i = 0; i < students.length; i++) {
-                // if (students[i].isMale)
-                //     students[i].isMale = "Male"
-                // else
-                //     students[i].isMale = "Female"
-
                 txt += "<tr><td>" + students[i].id + "</td>"
                     + "<td>" + students[i].rollNo + "</td>"
                     + "<td>" + students[i].name + "</td>"
@@ -62,11 +58,15 @@ function getData() {
             }
 
             txt += "</table>"
-            document.getElementById("table").innerHTML = "<center> Found <span class='badge'>" + i + "</span> students </center>" + txt
+            document.getElementById("table").innerHTML = "<center style='font-weight:bold'> Found <span class='badge'>" + i + "</span> students </center>" + txt
+            $("#addButton").attr("disabled", false)
 
             for (var i = 0; i < students.length; i++) {
                 $("#" + students[i].id).on('click', function () {
+                    var deleteStudent = confirm("Do you want to delete the current data")
+                    if(deleteStudent){
                     deleteData(this.id)
+                    }
                 })
 
             }
@@ -88,7 +88,6 @@ function putData(objData) {
         url: "http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students",
         data: objData,
         success: function (data) {
-            alert("Success")
             getData()
         },
 
@@ -110,7 +109,6 @@ function deleteData(id) {
         url: "http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/" + id,
 
         success: function (data) {
-            alert("Success")
             getData()
         },
 
@@ -120,12 +118,11 @@ function deleteData(id) {
 
     }
     )
-
 }
 
 function update(student) {
     console.log(student)
-
+    $('#u'+student.id).css("background","yellow")
     $("#rollNo").val(student.rollNo)
     $("#name").val(student.name)
     $("#age").val(student.age)
@@ -137,26 +134,48 @@ function update(student) {
     else
         $("#female").prop("checked", true)
     
-    $("#updateButton").html("<input type='button' value='Update' class='btn btn-primary'>")
+    $("#updateButton").html("<input type='button' value='Update' class='btn btn-primary' onclick=updateData('"+student.id+"')>")
+    $("#cancelUpdation").html("<input type='button' value='Cancel' class='btn btn-danger' onclick=cancelUpdate('"+student.id+"')>")
 
 }
 
-// function updateData(){
-//     var rollNo = $("#rollNo").val()
-//     var name = $("#name").val()
-//     var age = $("#age").val()
-//     var email = $("#email").val()
-//     var date = $("#date").val()
-//     var gender = $("input[name='gender']:checked").val()
-//     var isMale = false
+function updateData(id){
+    console.log("Inside UpdateData()")
+    var rollNo = $("#rollNo").val()
+    var name = $("#name").val()
+    var age = $("#age").val()
+    var email = $("#email").val()
+    var date = $("#date").val()
+    var gender = $("input[name='gender']:checked").val()
+    var isMale = false
 
-//     if (gender == "male") {
-//         isMale = true
-//     }
+    if (gender == "male") {
+        isMale = true
+    }
 
-//     var student = new Student(rollNo, name, age, email, date, isMale)
+    var student = new Student(rollNo, name, age, email, date, isMale)
 
-    
-// }
+    $.ajax({
+        type: "PUT",
+        url: "http://gsmktg.azurewebsites.net/api/v1/techlabs/test/students/" + id,
+        data: student,
+        success: function (data) {
+            document.getElementById("updateButton").innerHTML = " "
+            getData()
+        },
+
+        error: function (data) {
+            alert("Error")
+        }
+
+    }
+    )  
+}
+
+function cancelUpdate(id){
+    $('#u'+id).css("background","")
+    document.getElementById("updateButton").innerHTML = " "
+    document.getElementById("cancelUpdation").innerHTML = " "
+}
 
 
