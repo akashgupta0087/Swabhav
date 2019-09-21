@@ -1,0 +1,57 @@
+<html>
+
+<head>
+    <script src="../../angular.js"></script>
+    <link rel="stylesheet" href="../../../bootstrap-app/bootstrap-3.4.1-dist/css/bootstrap.css"></script>
+</head>
+
+<style>
+    .display{
+        border: 1px solid black;
+        width: 300px;
+        margin-bottom: 10px;
+    }
+</style>
+<body ng-app='modStudent'>
+    <center>
+    <div ng-controller='studentController'>
+        <br>
+        <button ng-click='fnStudent()' class='btn btn-primary'>Load</button>
+        <br>
+        <br>
+        <div ng-show='show' ng-repeat='student in students' class='display'>
+            <span><img src="{{student.photo}}"></span>
+            <br>
+            <span>Id: {{student.id}}</span>
+            <span>Name: {{student.name}}</span>
+            <span>CGPI: {{student.cgpi}}</span>
+            <span>Address: {{student.address}}</span>
+        </div>
+    </div>
+</center>
+</body>
+
+<script>
+
+    function Student(id, name, photo, cgpi, address) {
+        this.id = id
+        this.name = name
+        this.photo = photo
+        this.cgpi = cgpi
+        this.address = address
+    }
+
+    angular.module('modStudent', [])
+        .controller('studentController', function ($scope) {
+            $scope.show = false
+            $scope.fnStudent = function () {
+                $scope.show = true
+                $scope.students  = [new Student(1, "Sachin", "student1.jpg", 7.83, "Andheri"),
+                new Student(2, "Rashi", "student2.jpg", 8.23, "Borivali"),
+                new Student(3, "Virat", "student3.jpg", 9.65, "Bandra"),
+                new Student(4, "Priya", "student4.jpg", 8.70, "Dadar")] 
+            }
+        });
+</script>
+
+</html>

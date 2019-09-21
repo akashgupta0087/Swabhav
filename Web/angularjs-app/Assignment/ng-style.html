@@ -1,0 +1,23 @@
+<html>
+
+<head>
+    <script src="../angular.js"></script>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+    <h1 ng-style="myObj">Welcome</h1>
+</body>
+
+<script>
+    var app = angular.module("myApp", []);
+    app.controller("myCtrl", function ($scope) {
+        $scope.myObj = {
+            "color": "white",
+            "background-color": "coral",
+            "font-size": "60px",
+            "padding": "50px"
+        }
+    });
+</script>
+
+</html>

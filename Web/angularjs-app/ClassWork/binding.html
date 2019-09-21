@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <script src='../angular.js'></script>
+</head>
+
+<body ng-app='modStudent'>
+    <div ng-controller='studentController'>
+        <section>
+            <h1>One way binding</h1>
+            <p>{{student.id}}</p>
+            <p>{{student.name}}</p>
+            <p>{{student.cgpi}}</p>
+            <p>{{student.address}}</p>
+        </section>
+        <hr>
+        <section>
+            <h1>Two way binding</h1>
+            Id: <input type='text' ng-model='student.id'>
+            Name: <input type='text' ng-model='student.name'>
+            CGPI: <input type='text' ng-model='student.cgpi'>
+            Address: <input type='text' ng-model='student.address'>
+
+            <p>{{student.id}}</p>
+            <p>{{student.name}}</p>
+            <p>{{student.cgpi}}</p>
+            <p>{{student.address}}</p>
+        </section>
+        <hr>
+        <section>
+            <h1>One Time Binding</h1>
+            <p>{{:: student.id}}</p>
+            <p>{{:: student.name}}</p>
+            <p>{{:: student.cgpi}}</p>
+            <p>{{:: student.address}}</p>
+        </section>
+    </div>
+
+</body>
+
+<script>
+    function Student(id, name, cgpi, address) {
+        this.id = id
+        this.name = name
+        this.cgpi = cgpi
+        this.address = address
+    }
+
+    angular.module('modStudent', [])
+        .controller('studentController', function ($scope) {
+            $scope.student = new Student(101, "Sachin", 7.83, "Andheri")
+        })
+</script>
+
+</html>
