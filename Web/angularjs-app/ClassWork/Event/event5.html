@@ -1,0 +1,91 @@
+<html>
+
+<head>
+    <script src="../../angular.js"></script>
+    <link rel="stylesheet" href="../../../bootstrap-app/bootstrap-3.4.1-dist/css/bootstrap.css">
+    </script>
+</head>
+
+<style>
+    .display {
+        border: 1px solid black;
+        width: 300px;
+        margin-bottom: 10px;
+        margin-left: 50px;
+    }
+
+    .search {
+        float: left;
+        margin-left: 15%;
+        font-weight: bold;
+    }
+
+    .option {
+        float: right;
+        margin-right: 15%;
+        font-weight: bold;
+    }
+</style>
+
+<body ng-app='modStudent'>
+    <center>
+        <div ng-controller='studentController'>
+            <br>
+            <button ng-click='fnStudent()' class='btn btn-primary'>Load</button>
+            <br>
+            <span class="search">Search: <input type="text" ng-model='searchValue'></span>
+            <span class="option">
+                Sort by:
+                <input type="radio" value="name" name="optionSelect" ng-model='optionValue'>Name
+                <input type="radio" value="cgpi" name="optionSelect" ng-model='optionValue'>CGPI
+                <input type="radio" value="none" name="optionSelect" ng-model='optionValue'>None
+            </span>
+            <br>
+            <br>
+            <div ng-show='show' ng-repeat='student in students | orderBy: optionValue | filter: searchValue'
+                class='display' style='background:{{student.cgpi|CgpiFilter}}'>
+                <span><img ng-src="{{student.photo}}"></span>
+                <br>
+                <span>Id: {{student.id}}</span>
+                <span>Name: {{student.name}}</span>
+                <span>CGPI: {{student.cgpi}}</span>
+                <span>Address: {{student.address}}</span>
+            </div>
+        </div>
+    </center>
+</body>
+
+<script>
+
+    function Student(id, name, photo, cgpi, address) {
+        this.id = id
+        this.name = name
+        this.photo = photo
+        this.cgpi = cgpi
+        this.address = address
+    }
+
+    angular.module('modStudent', [])
+        .filter('CgpiFilter', function () {
+            return function (input) {
+                if (input < 6.75)
+                    return "red"
+                else if (input >= 6.75 && input <= 8.00)
+                    return "yellow"
+                else
+                    return "green"
+            }
+        })
+        .controller('studentController', function ($scope) {
+            $scope.show = false
+            $scope.fnStudent = function () {
+                $scope.show = true
+                $scope.students = [new Student(1, "Sachin", "sachin.jpg", 7.83, "Andheri"),
+                new Student(2, "Rashi", "rashi.jpg", 8.23, "Borivali"),
+                new Student(3, "Virat", "virat.jpg", 9.65, "Bandra"),
+                new Student(4, "Priya", "priya.jpg", 8.70, "Dadar")]
+            }
+        });
+</script>
+
+</html>

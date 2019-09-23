@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <script src="../../angular.js"></script>
+        <script src="studentApiService.js"></script>
+    </head>
+    <body ng-app='studentModule' ng-controller='studentController'>
+
+    <h1>Hello World!!</h1>
+    </body>
+    <script>
+        angular.module('studentModule')
+        .controller('studentController',[function($scope,studentFactory){
+            // $scope.students = []
+            // $scope.students = studentFactory.getStudents()
+            // console.log(studentFactory.getStudents())
+        }])
+    </script>
+</html>

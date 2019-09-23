@@ -1,0 +1,84 @@
+<html>
+
+<head>
+    <script src="../angular.js"></script>
+</head>
+<style>
+    div {
+        /* text-align: center; */
+        margin: 100px;
+        padding: 50px;
+        border: 2px solid black
+    }
+</style>
+
+<body>
+    <div ng-app='Math.module'>
+        <section ng-controller='cube'>
+            Cube Even : <input type="text" ng-model='numberCube'>
+            <button ng-click="cubeEvenNumber()">OK</button><br>
+            Answer : {{cubeEven}}
+        </section>
+        <br>
+        <hr>
+        <br>
+        <section ng-controller='prime'>
+            Is Prime : <input type="text" ng-model='numberPrime'>
+            <button ng-click="checkPrime()">OK</button><br>
+            Answer : {{isPrime}}
+        </section>
+    </div>
+</body>
+
+<script>
+    angular.module('Math.module', [])
+        .factory('MathService', ['$log', '$q', function ($log, $q) {
+            var factory = {}
+            $log.info("Inside service")
+
+            factory.cubeEven = function (number) {
+                return $q(function (resolve, reject) {
+                    if (number % 2 == 0)
+                        resolve(number * number * number)
+                    else
+                        reject("Odd number " + number + " can't be cubed")
+                })
+            }
+
+            factory.isPrime = function (number) {
+                return $q(function(resolve,reject){
+                    for (var i = 2; i <= number / 2; i++) {
+                    if (number % i == 0)
+                        resolve("Not Prime")
+                }
+                reject("Prime")
+                })
+            }
+
+            return factory
+        }])
+
+    angular.module('Math.module')
+        .controller('cube', ['$scope', 'MathService', function ($scope, MathService) {
+            $scope.cubeEvenNumber = function () {
+                 MathService.cubeEven($scope.numberCube).then(function(fromResolve){
+                    $scope.cubeEven = fromResolve
+                }).catch(function(fromReject){
+                    $scope.cubeEven = fromReject
+                })
+            }
+        }])
+
+    angular.module('Math.module')
+        .controller('prime', ['$scope', 'MathService', function ($scope, MathService) {
+            $scope.checkPrime = function () {
+                 MathService.isPrime($scope.numberPrime).then(function(fromResolve){
+                    $scope.isPrime = fromResolve
+                }).catch(function(fromReject){
+                    $scope.isPrime = fromReject
+                })
+            }
+        }])
+</script>
+
+</html>

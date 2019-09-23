@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <script src="../angular.js"></script>
+</head>
+<style>
+    .displayArea {
+        border: 10px solid green;
+        margin: 50px;
+        padding: 50px;
+        text-align: center;
+        width: 300px;
+    }
+
+    .input {
+        margin-left: 40%;
+    }
+</style>
+
+<body ng-app='multiMod'>
+
+    <div ng-controller='multiController'>
+        <div class="input">
+            <span>
+                Text : <input type="text" ng-model='text'>
+            </span><br> <br>
+            <span>
+                Font-Size : <input type="text" ng-model='fontSize'>
+            </span><br> <br>
+            <span>
+                Font-Color :
+                <select ng-model='fontColor' ng-options="color for color in fontColors">
+                </select>
+            </span><br> <br>
+            <span>
+                Background-Color :
+                <select ng-model='backgroundColor' ng-options="color for color in backgroundColors">
+                </select>
+            </span>
+        </div>
+        <center>
+            <div class="displayArea"
+                style="font-size:{{fontSize}}; color:{{fontColor}}; background:{{backgroundColor}};">
+                <p>{{text}}</p>
+            </div>
+    </div>
+    </center>
+</body>
+
+<script>
+    angular.module('multiMod', [])
+        .controller('multiController', function ($scope) {
+            $scope.text = "Hello"
+            $scope.fontSize = "20"
+            $scope.fontColors = ["Red", "Blue", "Yellow", "Green"]
+            $scope.backgroundColors = ["Red", "Blue", "Yellow", "Green"]
+            // [{colorName:"Red", value:"#ff3333"}, {colorName:"Blue", value:"#1aa3ff"}, {colorName:"Yellow", value:"#ffff1a"}, {colorName:"Green", value:"#66ff33"} ]
+        })
+</script>
+
+</html>

@@ -1,0 +1,37 @@
+<html>
+
+<head>
+    <script src="../../angular.js"></script>
+    <script src="numbersApiAngularJSService.js"></script>
+</head>
+
+<body ng-app='numbersModule' ng-controller='numbersController'>
+    <h2>Numbers API Angular JS Service</h2>
+    <h1>Enter a number: <input type="text" ng-model='inputNumber'></h1>
+    <button ng-click="getFacts()">Submit</button>
+    <br>
+    <!-- <img id="loading"> -->
+    <p>{{error}}</p>
+    <p ng-repeat="fact in facts">{{fact}}</p>
+</body>
+
+<script>
+    angular.module('numbersModule')
+        .controller('numbersController', ['$scope', 'numbersFactory', function ($scope, numbersFactory) {
+            $scope.facts = []
+            numbersFactory.loadPreviousFacts().then(function(fromResolve){
+                $scope.facts = fromResolve
+            })
+            $scope.getFacts = function () {
+                numbersFactory.loadFacts($scope.inputNumber)
+                    .then(function (fromResolve) {
+                        $scope.facts = fromResolve
+                    }).catch(function (fromReject) {
+                        $scope.error = fromReject
+                    })
+            }
+        }])
+</script>
+
+
+</html>

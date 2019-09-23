@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <script src="../../angular.js"></script>
+    </head>
+    <body ng-app='numbersModule' ng-controller='numbersController'>
+    <h2>Numbers API Angular JS Part 3</h2>
+    <h1>Enter a number: <input type = "text" ng-model='inputNumber' ></h1>
+    <button ng-click="loadFacts()">Submit</button>
+    <br>
+    <!-- <img id="loading"> -->
+    <p ng-repeat="fact in facts">{{fact}}</p>
+</body>
+
+<script>
+    angular.module('numbersModule',[])
+    .controller('numbersController',['$scope','$http',function($scope,$http){
+        $scope.facts = []
+        $scope.facts = localStorage.getItem("factsArrayAngular") ? JSON.parse(localStorage.getItem("factsArrayAngular")) : []
+        
+        $scope.loadFacts = function(){
+        var link = "http://numbersapi.com/" + $scope.inputNumber
+        $http.get(link)
+        .then(function success(response){
+            $scope.facts.unshift(response.data)
+                localStorage.setItem("factsArrayAngular", JSON.stringify($scope.facts))
+        })
+        }
+    }])
+
+</script>
+</html>

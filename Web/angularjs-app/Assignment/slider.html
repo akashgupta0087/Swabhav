@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <script src="../angular.js"></script>
+    </head>
+
+    <body ng-app='modSlider'>
+        <div ng-controller='sliderController'>
+        <input type="range" ng-model="value" ng-change="counter()" min="{{min}}" max="{{max}}">
+        <br>
+        <h1>Value : {{value}}</h1>
+        <!-- <h1>Change: {{count}}</h1> -->
+        <!-- <div ng-repeat="button in buttons"> -->
+            <button ng-repeat="button in buttons">{{button}}</button>
+        <!-- </div> -->
+    </div>
+    </body>
+
+    <script>
+        angular.module('modSlider',[])
+        .controller('sliderController',['$scope',function($scope){
+            $scope.value = 50
+            $scope.min = 1
+            $scope.max = 100
+            $scope.count = 0
+            $scope.buttons = []
+            $scope.counter = function(){
+                $scope.buttons.length = 0
+                $scope.count++
+                for(var i = $scope.min; i <= $scope.value; i++){
+                    $scope.buttons.push(i)
+                }
+            }
+        }]);
+    </script>
+</html>
