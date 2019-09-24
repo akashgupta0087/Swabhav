@@ -1,0 +1,40 @@
+<style>
+    #table,th{
+        text-align: center;
+        border: 2px solid black;
+    }
+    #tableArea{
+        margin: 50px;
+    }
+    .deletebtn{
+        border-radius: 50%;
+    }
+    
+
+</style>
+<div id="tableArea">
+    <table id=table class='table table-bordered'>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Job</th>
+            <th>salary</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        <tr ng-repeat='employee in employees'>
+            <td>{{employee.id}}</td>
+            <td>{{employee.name}}</td>
+            <td>{{employee.age}}</td>
+            <td>{{employee.gender}}</td>
+            <td>{{employee.job}}</td>
+            <td>{{employee.salary}}</td>
+            <td><button>Edit</button></td>
+            <td><button class="deletebtn btn-danger glyphicon glyphicon-remove"></button></td>
+        </tr>
+    </table>
+</div>
+<br>
+<a href="#/add">AddEmployee</a>

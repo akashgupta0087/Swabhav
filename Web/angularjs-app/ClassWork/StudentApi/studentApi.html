@@ -1,0 +1,124 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="../../../bootstrap-app/bootstrap-3.4.1-dist/css/bootstrap.css">
+    <script src="../../angular.js"></script>
+    <script src="studentApiService.js"></script>
+    <script src="studentApiScript.js"></script>
+</head>
+
+<style>
+    .table,
+    th {
+        text-align: center;
+    }
+
+    #form {
+        margin-left: 500px;
+        margin-top: 20px;
+    }
+
+    .studentsNumber{
+        text-align: center;
+        font-weight: bold;
+    }
+
+    fieldset.scheduler-border {
+        border: 2px solid black;
+        padding: 15px;
+        margin: 0px;
+        width: 50%;
+
+    }
+
+    legend.scheduler-border {
+        font-size: 1.2em;
+        font-weight: bold;
+        text-align: left;
+        width: auto;
+        padding: 0 10px;
+        border-bottom: none;
+    }
+
+    .deletebtn {
+        border-radius: 50%;
+    }
+</style>
+
+<body ng-app='studentModule' ng-controller='studentController' class="container-fluid">
+    <div id="form">
+        <form method="GET">
+            <fieldset class="scheduler-border">
+                <legend class="scheduler-border">Student Details</legend>
+                <div class="form-inline">
+                    <label>Roll No. : </label><input type="number" class="form-control" min=0 max=100 id="rollNo"
+                        ng-model='rollNo' required />
+                </div>
+                <br>
+                <div class="form-inline">
+                    <label>Name : </label><input type="text" id="name" class="form-control" ng-model='name' required>
+                </div>
+                <br>
+                <div class="form-inline">
+                    <label>Age : </label><input type="number" class="form-control" min=0 max=150 id="age" ng-model='age'
+                        required>
+                </div>
+                <br>
+                <div class="form-inline">
+                    <label>Email : </label><input type="email" id="email" class="form-control" ng-model='email'
+                        required>
+                </div>
+                <br>
+                <div class="form-inline">
+                    <label>Date : </label><input type="date" class="form-control" data-date-inline-picker="true"
+                        id="date" ng-model='date' required>
+                </div>
+                <br>
+
+                <div class="form-inline">
+                    <input type="radio" id="male" class="form-control" name="gender" value="true" ng-model='gender'
+                        required><label>Male</label>
+                    <input type="radio" id="female" class="form-control" name="gender" value="false" ng-model='gender'
+                        required><label>Female</label>
+                </div>
+                <br>
+                <input type="button" id="addButton" class="btn btn-primary" value="Add" ng-click="addStudent()">
+            </fieldset>
+        </form>
+    </div>
+    <p class="studentsNumber">Found <span class=badge>{{students.length}}</span> students</p>
+    <br>
+    <center>
+        <div id="tableArea">
+            <!-- <img id="loadingImage"> -->
+            <table id=table class='table table-bordered'>
+                <tr>
+                    <th>Id</th>
+                    <th>RollNo</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Email</th>
+                    <th>Date</th>
+                    <th>Gender</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+                <tr ng-repeat='student in students'>
+                    <td>{{student.id}}</td>
+                    <td>{{student.rollNo}}</td>
+                    <td>{{student.name}}</td>
+                    <td>{{student.age}}</td>
+                    <td>{{student.email}}</td>
+                    <td>{{student.date}}</td>
+                    <td ng-bind="getGender({{student.isMale}})"></td>
+                    <td><button id=u{{student.id}}>Edit</button></td>
+                    <td><button id=d{{student.id}} class="deletebtn btn-danger glyphicon glyphicon-remove"></button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </center>
+
+</body>
+
+</html>

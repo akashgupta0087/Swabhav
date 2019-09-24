@@ -1,0 +1,30 @@
+<html>
+
+<head>
+    <script src="../../../angular.js"></script>
+    <script src="../../../angular-route.js"></script>
+    <script src="app.js"></script>
+    <script src="controller.js"></script>
+</head>
+
+<style>
+    .displayArea {
+        text-align: center;
+        border: 2px solid black;
+        font-size: 30px;
+        margin: 50px;
+        padding: 50px;
+    }
+</style>
+
+<body ng-app='spa.module'>
+    <a href="#/home">Home</a>
+    <a href="#/about">About</a>
+    <a href="#/career">Career</a>
+
+    <div class="displayArea" ng-view>
+
+    </div>
+</body>
+
+</html>

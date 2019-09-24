@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <script src="../angular.js"></script>
+    </head>
+
+    <body ng-app='mainApp' ng-controller='appController'>
+        <aurionpro-header></aurionpro-header>
+        <h1>Hello World!!</h1>
+        <aurionpro-footer></aurionpro-footer>
+        <aurionpro-footer year="2020"></aurionpro-footer>
+        
+    </body>
+<script>
+    var app = angular.module('mainApp',[])
+
+    app.directive('aurionproHeader',function(){
+        return {
+            template : "<header>Hello AurionPro!!</header>"
+        }
+    })
+
+    app.directive('aurionproFooter',function(){
+        function linkFunction($scope,elem,attrs){
+            console.log(attrs.year)
+            $scope.year = attrs.year
+        }
+        return{
+            template : "<footer>Copyright AurionPro {{year}} </footer>",
+            scope : true,
+            link : linkFunction,
+        }
+    })
+
+    app.controller('appController', function(){
+
+    })
+</script>
+
+</html>

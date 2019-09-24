@@ -9,10 +9,15 @@
     </body>
     <script>
         angular.module('studentModule')
-        .controller('studentController',[function($scope,studentFactory){
-            // $scope.students = []
-            // $scope.students = studentFactory.getStudents()
-            // console.log(studentFactory.getStudents())
+        .controller('studentController',['$scope','studentFactory',function($scope,studentFactory){
+            $scope.students = []
+            studentFactory.getStudents().then(function(response){
+                $scope.students = response.data
+                // console.log($scope.students)
+            })
+            console.log($scope.students)
+            
+            
         }])
     </script>
 </html>

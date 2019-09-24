@@ -1,0 +1,57 @@
+<style>
+    fieldset.scheduler-border {
+        border: 2px solid black;
+        padding: 15px;
+        margin: 0px;
+        width: 50%;
+
+    }
+
+    legend.scheduler-border {
+        font-size: 1.2em;
+        font-weight: bold;
+        text-align: left;
+        width: auto;
+        padding: 0 10px;
+        border-bottom: none;
+    }
+    #form {
+        margin-left: 500px;
+        margin-top: 20px;
+    }
+</style>
+<div id="form">
+    <form method="GET">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">Student Details</legend>
+            <div class="form-inline">
+                <label>Name : </label><input type="text" id="name" class="form-control" ng-model='name' required>
+            </div>
+            <br>
+            <div class="form-inline">
+                <label>Age : </label><input type="number" class="form-control" min=0 max=150 id="age" ng-model='age'
+                    required>
+            </div>
+            <br>
+            <div class="form-inline">
+                <label> Job: </label>
+                <select ng-model='empJob' class="form-control" ng-options="job for job in jobs"></select>
+            </div>
+            <br>
+            <div class="form-inline">
+                    <label>Salary : </label><input type="number" class="form-control" min=0 max=10000 id="salary" ng-model='salary'
+                        required>
+                </div>
+            <br>
+
+            <div class="form-inline">
+                <input type="radio" id="male" class="form-control" name="gender" value="Male" ng-model='gender'
+                    required><label>Male</label>
+                <input type="radio" id="female" class="form-control" name="gender" value="Female" ng-model='gender'
+                    required><label>Female</label>
+            </div>
+            <br>
+            <input type="button" id="addButton" class="btn btn-primary" value="Add" ng-click="addEmployee()">
+        </fieldset>
+    </form>
+</div>
