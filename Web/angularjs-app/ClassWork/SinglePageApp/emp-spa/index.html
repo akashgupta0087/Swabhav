@@ -1,18 +1,44 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="../../../../bootstrap-app/bootstrap-3.4.1-dist/css/bootstrap.css">
-        <script src="../../../angular.js"></script>
-        <script src="../../../angular-route.js"></script>
-        <script src="empApp.js"></script>
-        <script src="empService.js"></script>
-        <script src="empController.js"></script>
-    </head>
 
-    <body ng-app='emp.module' class='container-fluid'>
-        <div ng-view>
+<head>
+    <link rel="stylesheet" href="../../../../bootstrap-app/bootstrap-3.4.1-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+    <script src="../../../angular.js"></script>
+    <script src="../../../angular-route.js"></script>
+    <script src="empApp.js"></script>
+    <script src="empService.js"></script>
+    <script src="empController.js"></script>
+    <script src="../../../../jquery-app/jquery-3.4.1.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+</head>
 
+<body ng-app='emp.module' class='container-fluid'>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <!-- <div class="navbar-header">
+                            <a class="navbar-brand" href="#">WebSiteName</a>
+                        </div> -->
+            <ul class="nav navbar-nav" ng-controller='homeController'>
+                <li class="active"><a href="#/home">Home</a></li>
+                <li><a href="#/add">Add Employee</a></li>
+                <li><a href="#">{{username}}</a></li>
+            </ul>
         </div>
-        
-    </body>
+    </nav>
+
+    <div ng-view>
+
+    </div>
+</body>
+<script>
+    $(".nav a").on("click", function () {
+        $(".nav").find(".active").removeClass("active");
+        $(this).parent().addClass("active");
+    });
+</script>
+
 </html>

@@ -1,0 +1,43 @@
+<style>
+        fieldset.scheduler-border {
+            border: 2px solid black;
+            padding: 15px;
+            margin: 0px;
+            width: 50%;
+    
+        }
+    
+        legend.scheduler-border {
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: left;
+            width: auto;
+            padding: 0 10px;
+            border-bottom: none;
+        }
+        #form {
+            margin-left: 500px;
+            margin-top: 20px;
+        }
+    </style>
+
+<div id="form">
+    <form method="GET">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">Login</legend>
+            <div class="form-inline">
+                <label>Username : </label><input type="text" id="name" class="form-control" ng-model='username' required>
+            </div>
+            <br>
+            {{username}}
+            <div class="form-inline">
+                    <label>Password : </label><input type="text" id="name" class="form-control" ng-model='password' required>
+            </div>
+            <br>
+            {{password}}
+            <br>
+            <!-- <a href="#/home"><button class="btn btn-primary">Login</button></a> -->
+            <input type="button" value="Login" class="btn btn-primary" ng-click='validate()'>
+        </fieldset>
+    </form>
+</div>

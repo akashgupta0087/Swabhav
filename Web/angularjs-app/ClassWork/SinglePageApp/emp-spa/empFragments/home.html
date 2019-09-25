@@ -9,7 +9,17 @@
     .deletebtn{
         border-radius: 50%;
     }
-    
+    .updatebtn{
+    background-color: #1c87c9;
+         border: none;
+         color: white;
+         padding: 5px 10px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 15px;
+         cursor: pointer;
+    }
 
 </style>
 <div id="tableArea">
@@ -31,10 +41,14 @@
             <td>{{employee.gender}}</td>
             <td>{{employee.job}}</td>
             <td>{{employee.salary}}</td>
-            <td><button>Edit</button></td>
-            <td><button class="deletebtn btn-danger glyphicon glyphicon-remove"></button></td>
+            <!-- <td><button>Edit</button></td> -->
+            <!-- <td><button class="deletebtn btn-danger glyphicon glyphicon-remove" ng-onclick="#/delete/{{employee.id}}"></button></td> -->
+            <!-- <td><a href="#/update/{{employee.id}}" class="updatebtn">Edit</a></td> -->
+            <!-- <td><a href="#/delete/{{employee.id}}" class="deletebtn btn btn-danger glyphicon glyphicon-remove"></a></td> -->
+            <td><a href="#/update/{{employee.id}}"><button class="btn btn-primary">Edit</button></a></td>
+            <td ng-controller="deleteController"><a><button class="deletebtn btn btn-danger glyphicon glyphicon-remove" ng-click="deleteEmployee(employee.id)"></button></a></td>
         </tr>
     </table>
 </div>
 <br>
-<a href="#/add">AddEmployee</a>
+<a href="#/login">Login</a>

@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+    <script src="../angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+    
+</head>
+<script>
+        angular
+            .module('firstApplication', ['ngMaterial'])
+            .controller('dialogController', function ($scope, $mdDialog) {
+                $scope.showConfirm = function (event) {
+                    var confirm = $mdDialog.confirm()
+                        .title('Are you sure to delete the record?')
+                        .textContent('Record will be deleted permanently.')
+                        .ariaLabel('TutorialsPoint.com')
+                        .targetEvent(event)
+                        .ok('Yes')
+                        .cancel('No');
+                    $mdDialog.show(confirm).then(function () {
+                        // $scope.status = 'Record deleted successfully!';
+                        alert("Deleted")
+                    }, function () {
+                        // $scope.status = 'You decided to keep your record.';
+                        alert("Not deleted")
+                    });
+                };
+            })
+    </script>
+<body ng-app='firstApplication'>
+    <div ng-controller='dialogController'>
+        <md-button class="md-primary md-raised" ng-click="showConfirm($event)" flex="100" flex-gt-md="auto">
+            Confirm
+        </md-button>
+    </div>
+</body>
+
+</html>
