@@ -3,21 +3,34 @@ angular.module('emp.module')
         console.log("Inside Home")
         $scope.employees = []
         $scope.employees = empFactory.getEmployees()
+        authService.isLogged = authService.getLoginStatus()
+        console.log(authService.isLogged)
         if (authService.isLogged) {
+            document.getElementById("logout").innerHTML = "Logout"
             console.log(authService.isLogged)
             $rootScope.username = authService.admin.username
+            console.log("Inside if")
             console.log($rootScope.username)
         }
+        if (!authService.isLogged) {
+            console.log("Inside else")
+            console.log(authService.isLogged)
+            document.getElementById("logout").innerHTML = ""
+        }
     }])
-    .controller('addController', ['$scope', 'empFactory', function ($scope, empFactory) {
+    .controller('addController', ['$scope', 'empFactory', 'authService', function ($scope, empFactory, authService) {
         $scope.jobs = []
         $scope.jobs = empFactory.jobs
-
+        if (authService.isLogged) {
         $scope.addEmployee = function () {
             // $scope.id = Date.now().toString()
-            var employee = new empFactory.Employee($scope.name, $scope.age, $scope.gender, $scope.job, $scope.salary)
-            console.log(employee)
-            empFactory.addEmployee(employee)
+                var employee = new empFactory.Employee($scope.name, $scope.age, $scope.gender, $scope.job, $scope.salary)
+                console.log(employee)
+                empFactory.addEmployee(employee)
+            }
+        }
+        else {
+            window.location.href = "#/login"
         }
     }])
     .controller('deleteController', ['$scope', 'empFactory', '$mdDialog', 'authService', function ($scope, empFactory, $mdDialog, authService) {
@@ -27,7 +40,7 @@ angular.module('emp.module')
             if (authService.isLogged) {
                 showConfirm(employeeId)
             }
-            else {
+            if (!authService.isLogged) {
                 window.location.href = "#/login"
             }
         }
@@ -72,19 +85,25 @@ angular.module('emp.module')
                 window.location.href = "#/home"
             }
         }
-        else {
+        if (!authService.isLogged) {
             window.location.href = "#/login"
         }
     }])
 
-    .controller('loginController', ['$scope', 'authService', function ($scope, authService) {
-        $scope.validate = function () {
-            if ($scope.username == authService.admin.username && $scope.password == authService.admin.password) {
-                alert("Success")
-                authService.isLogged = true
+    .controller('loginController', ['$rootScope', '$scope', 'authService', function ($rootScope, $scope, authService) {
+        $scope.empLogin = function () {
+            if (authService.login($scope.username, $scope.password)) {
+                document.getElementById("logout").innerHTML = "Logout"
                 window.location.href = "#/home"
             }
-            else
-                alert("Failure")
         }
+
+        $scope.empLogout = function () {
+            console.log("Inside empLogout()")
+            authService.logout()
+            $rootScope.username = ""
+            document.getElementById("logout").innerHTML = ""
+
+        }
+
     }])

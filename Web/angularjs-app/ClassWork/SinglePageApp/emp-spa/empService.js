@@ -54,7 +54,7 @@ angular.module('emp.module')
 
         factory.jobs = ["Manager", "Programmer", "Analyst", "Clerk"]
 
-        
+
         factory.Employee = function (name, age, gender, job, salary) {
             this.id = Date.now().toString()
             this.name = name
@@ -82,7 +82,7 @@ angular.module('emp.module')
             console.log(factory.employees)
         }
 
-        factory.getEmployee = function(employeeId){
+        factory.getEmployee = function (employeeId) {
             for (var i = 0; i < factory.employees.length; i++) {
                 if (factory.employees[i].id == employeeId) {
                     return factory.employees[i]
@@ -90,10 +90,10 @@ angular.module('emp.module')
             }
         }
 
-        factory.updateEmployee = function(updatedEmployee){
-            for(var i = 0; i < factory.employees.length; i++){
-                if(factory.employees[i].id == updatedEmployee.id){
-                    factory.employees.splice(i,1,updatedEmployee)
+        factory.updateEmployee = function (updatedEmployee) {
+            for (var i = 0; i < factory.employees.length; i++) {
+                if (factory.employees[i].id == updatedEmployee.id) {
+                    factory.employees.splice(i, 1, updatedEmployee)
                 }
             }
         }
@@ -102,8 +102,8 @@ angular.module('emp.module')
     })
 
 
-    angular.module('emp.module',)
-    .factory('authService',function(){
+angular.module('emp.module')
+    .factory('authService', function () {
         var auth = {}
 
         auth.admin = {
@@ -112,6 +112,31 @@ angular.module('emp.module')
         }
 
         auth.isLogged = false
+
+        auth.login = function (username, password) {
+            if (username == auth.admin.username && password == auth.admin.password) {
+                alert("Success")
+                auth.isLogged = true
+                localStorage.setItem("empLogged", auth.isLogged)
+            }
+            else
+                alert("Failure")
+            return auth.isLogged
+        }
+
+        auth.getLoginStatus = function () {
+            if(localStorage.getItem("empLogged") == "true"){
+                return true
+            }
+            return false
+        }
+
+        auth.logout = function () {
+            console.log("Inside logout()")
+            auth.isLogged = false
+            localStorage.setItem("empLogged", auth.isLogged)
+            console.log(localStorage.getItem("empLogged"))
+        }
 
         return auth
     })
