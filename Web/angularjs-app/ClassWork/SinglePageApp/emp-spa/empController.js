@@ -59,7 +59,7 @@ angular.module('emp.module')
 
     }])
 
-    .controller('updateController', ['$scope', '$routeParams', 'empFactory', 'authService', function ($scope, $routeParams, empFactory, authService) {
+    .controller('updateController', ['$scope', '$routeParams', 'empFactory', 'authService', function ($scope,  $routeParams , empFactory, authService) {
         if (authService.isLogged) {
             $scope.jobs = []
             $scope.jobs = empFactory.jobs

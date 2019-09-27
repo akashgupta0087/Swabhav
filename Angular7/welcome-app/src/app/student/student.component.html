@@ -1,0 +1,18 @@
+<section class="container" [style.background]="convertCGPAToColor(student.cgpa)">
+    <h1 [innerHTML]="'StudentComponent'"></h1>
+    <h2 [innerHTML]="student.rollNo"></h2>
+    <h2 [innerHTML]="student.name"></h2>
+    <!-- Can also Write student[name] -->
+    <h2 [innerHTML]="student.cgpa"></h2>
+    <img [src]="student.photo" [height]="imgHeight" [width]="imgWidth">
+    <br>
+    <br>
+    <button (click)='loadStudents()'>Load Students</button>
+</section>
+<br>
+    <section class="container" *ngFor='let student of students' [style.background]="convertCGPAToColor(student.cgpa)">
+        <h2 [innerHTML]="student.rollNo"></h2>
+        <h2 [innerHTML]="student.name"></h2>
+        <h2 [innerHTML]="student.cgpa"></h2>
+        <img [src]="student.photo" [height]="imgHeight" [width]="imgWidth">
+    </section>

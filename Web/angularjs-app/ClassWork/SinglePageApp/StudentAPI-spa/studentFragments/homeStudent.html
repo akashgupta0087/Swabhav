@@ -1,0 +1,39 @@
+<style>
+    .table,
+    th {
+        text-align: center;
+    }
+    .deletebtn {
+        border-radius: 50%;
+    }
+</style>
+
+<div id="tableArea">
+    <!-- <img id="loadingImage"> -->
+    <table id=table class='table table-bordered'>
+        <tr>
+            <th>Id</th>
+            <th>RollNo</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>Date</th>
+            <th>Gender</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        <tr ng-repeat='student in students'>
+            <td>{{student.id}}</td>
+            <td>{{student.rollNo}}</td>
+            <td>{{student.name}}</td>
+            <td>{{student.age}}</td>
+            <td>{{student.email}}</td>
+            <td>{{student.date}}</td>
+            <td ng-bind="getGender({{student.isMale}})"></td>
+            <td><a href="#/update/{{student.id}}"><button class="btn btn-primary">Edit</button></a></td>
+            <td ng-controller='deleteController'><a href="#/"><button class="deletebtn btn btn-danger glyphicon glyphicon-remove" ng-click="deleteStudent(student.id)"></button></a></td>
+            </td>
+            <!-- ng-controller="deleteController" -->
+        </tr>
+    </table>
+</div>
