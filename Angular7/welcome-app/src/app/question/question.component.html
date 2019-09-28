@@ -1,0 +1,4 @@
+<section *ngIf="quesNo  < questions.length">
+    <p>{{questions[quesNo]}}</p>
+    <button (click)='getQuestion()'>Next</button>
+</section>

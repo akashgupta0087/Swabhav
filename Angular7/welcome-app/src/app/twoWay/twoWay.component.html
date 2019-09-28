@@ -1,8 +1,15 @@
 <section>
-        First Name: <input type="text" [ngModel]="firstName" (ngModelChange)="firstNameChange($event)">
-        Last Name: <input type="text" [(ngModel)]="lastName">
-        <br>
-        <br>
-    <h1>FisrtName : {{firstName}}</h1> <br>
-    <h1>LastName : {{lastName}}</h1>
+    First Name: <input type="text" [ngModel]="firstName" (ngModelChange)="firstNameChange($event)">
+    Last Name: <input type="text" [(ngModel)]="lastName">
+    <br>
+    <!-- <br> -->
+    <h4>FisrtName : {{firstName}}</h4>
+    <h4>LastName : {{lastName}}</h4>
+</section>
+<hr class="col-lg-12" style="background: black">
+<section>
+<h4>Check Prime Number</h4>
+Enter a Number(Sync): <input type="number" [(ngModel)]="number" [style.background]="isPrime()">
+<br>
+Enter a Number(Async): <input type="number" [(ngModel)]="numberAsync" [style.background]="isPrimeAsync()">
 </section>
