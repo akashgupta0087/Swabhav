@@ -11,5 +11,6 @@
 <h4>Check Prime Number</h4>
 Enter a Number(Sync): <input type="number" [(ngModel)]="number" [style.background]="isPrime()">
 <br>
-Enter a Number(Async): <input type="number" [(ngModel)]="numberAsync" [style.background]="isPrimeAsync()">
+<button (click)="observe()">Click</button><br>
+Enter a Number(Async): <input type="number" [ngModel]="numberAsync" (ngModelChange)="isPrimeAsync($event)" [style.background]="primeAsyncColor">
 </section>

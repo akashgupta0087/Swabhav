@@ -1,0 +1,35 @@
+<style>
+    .tooltip {
+        position: relative;
+        display: inline-block;
+        /* border-bottom: 1px dotted black; */
+    }
+
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: white;
+        color: black;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+
+        /* Position the tooltip */
+        position: absolute;
+        z-index: 1;
+    }
+
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+    }
+</style>
+
+<section>
+    <!-- <aurionpro-togglebtn [textContent]='"Toggler"'
+    [onStateColor]='"green"' [offStateColor]='"red"' (stateChange)="stateChangeHandler($event)"></aurionpro-togglebtn>
+<h3>{{status}}</h3> -->
+    <div class="tooltip">
+        <aurionpro-rating [rating]='"4.5"' (displayRating)="displayRatingHandler($event)"></aurionpro-rating>
+        <h3 class="tooltiptext">Hello</h3>
+    </div>
+</section>

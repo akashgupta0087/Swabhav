@@ -8,16 +8,20 @@ import { BlueBallComponent } from './blueBall/blueBall.component';
 import { TwoWayComponent } from './twoWay/twoWay.component'
 import { MathService } from './service/MathService';
 import { QuestionService } from './service/QuestionService';
-import{ QuestionComponent } from './question/question.component'
+import { QuestionComponent } from './question/question.component'
+import { SqrtPipe } from './custom Pipe/srrtPipe';
+import { ParentChildComponent } from './parentChild/parentChild.component';
+import { ToggleBtnComponent } from './parentChild/toggle/togglebtn.component';
+import { RatingComponent } from './parentChild/rating/rating.component';
 
 @NgModule({
   declarations: [
-    WelcomeComponent, StudentComponent, BlueBallComponent, TwoWayComponent,QuestionComponent
+    WelcomeComponent, StudentComponent, BlueBallComponent, TwoWayComponent, QuestionComponent, SqrtPipe, ParentChildComponent, ToggleBtnComponent, RatingComponent
   ],
   imports: [
-    BrowserModule,FormsModule
+    BrowserModule, FormsModule
   ],
-  providers: [MathService,QuestionService],
+  providers: [MathService, QuestionService],
   bootstrap: [WelcomeComponent]
 })
 export class AppModule { }
