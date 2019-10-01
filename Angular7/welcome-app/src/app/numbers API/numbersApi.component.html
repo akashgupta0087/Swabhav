@@ -1,0 +1,4 @@
+Enter a number : <input type="number" [(ngModel)]="number"> <br>
+<input type="button" value="Get Facts" (click)="getFacts()"> <br><br>
+
+<p *ngFor='let fact of facts'>{{fact}}</p>

@@ -1,0 +1,11 @@
+img{
+    width: 20%;
+    height: 20%;
+}
+.mainArea{
+    text-align: center;
+    border: 1px solid blue
+}
+.name{
+    font-weight: bold;
+}
