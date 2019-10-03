@@ -1,3 +1,31 @@
-<p>
-  productList works!
-</p>
+<div class="panel panel-primary" >
+    <div class="panel-heading"><span class="heading">Product List</span></div>
+    <div class="panel-body">
+    <label>Filter by: </label> 
+    <input type="text" class="inputFilter" [(ngModel)]="searchText">
+    <table class="table">
+      <thead>
+      <tr>
+        <th><button class="btn btn-primary" (click)="displayImages()">{{buttonText}}</button></th>
+        <th>Product</th>
+        <th>Code</th>
+        <th>Available</th>
+        <th>Price</th>
+        <th>5 Star Rating</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products | filter:searchText">
+       <td><img src="{{product.imageUrl}}"  *ngIf="showImage"></td> 
+        <td><a routerLink="/productDetail/{{product.productId}}">{{product.productName}}</a></td>
+        <td>{{product.productCode}}</td>
+        <td>{{product.releaseDate}}</td>
+        <td>{{product.price | currency:"USD"}}</td>
+        <td>
+          <app-star [rating]="product.starRating"></app-star>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>

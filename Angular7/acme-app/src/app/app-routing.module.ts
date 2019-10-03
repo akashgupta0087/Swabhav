@@ -8,7 +8,7 @@ import { StarComponent } from './star/star.component';
 
 const routes: Routes = [{ path: 'home', component: WelcomeComponent },
 { path: 'productList', component: ProductListComponent },
-{ path: 'productDetail', component: ProductDetailComponent },
+{ path: 'productDetail/:id', component: ProductDetailComponent },
 { path: 'star', component: StarComponent },
 {path: '',redirectTo:"home",pathMatch:"full"}];
 

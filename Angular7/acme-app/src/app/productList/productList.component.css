@@ -1,0 +1,14 @@
+.mainArea{
+    text-align: center;
+}
+
+.heading{
+    font-size: 20px;
+}
+.inputFilter{
+    margin-left: 12.5%;
+}
+img{
+    width: 60px;
+    /* height: 20%; */
+}

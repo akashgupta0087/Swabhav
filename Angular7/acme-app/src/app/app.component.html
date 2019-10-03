@@ -1,11 +1,4 @@
-<!-- <a routerLink="home">Home</a>
-<a routerLink="productList">Product List</a>
-<a routerLink="productDetail">Product Detail</a>
-<a routerLink="star">Star</a> -->
-
-
-
-<mat-toolbar class="navColor">
+<!-- <mat-toolbar>
 <div>Acme Product Management</div>
 <div class="navSpacing">
   <span><a routerLink="home">Home</a></span>
@@ -13,7 +6,19 @@
   <span><a routerLink="productDetail">Product Detail</a></span>
   <span><a routerLink="star">Star</a></span>
 </div>
-</mat-toolbar>
+</mat-toolbar> -->
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" routerLink=""><b>Acme Product Management</b></a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a routerLink="home"><b>Home</b></a></li>
+        <li><a routerLink="productList"><b>Product List</b></a></li>
+      </ul>
+    </div>
+  </nav>
 
 <section  class="container">
   <router-outlet></router-outlet>
