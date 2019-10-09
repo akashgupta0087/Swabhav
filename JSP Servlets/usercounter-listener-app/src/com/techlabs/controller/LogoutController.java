@@ -1,6 +1,8 @@
 package com.techlabs.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,26 +21,31 @@ public class LogoutController extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
     public LogoutController() {
-    	System.out.println("Logout servlet created");
+        super();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
-		
-		session.removeAttribute("loggedIn");
-		session.invalidate();
-		
-		response.sendRedirect("students");
+		 response.setContentType("text/html");
+	        PrintWriter out = response.getWriter();
+
+	        HttpSession session = request.getSession(false);
+	        session.invalidate();
+	       	        
+	        out.print("<h1>You are successfully logged out</h1>");
+
+	        out.close();
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

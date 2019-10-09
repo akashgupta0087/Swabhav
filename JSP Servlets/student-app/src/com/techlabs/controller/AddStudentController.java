@@ -33,14 +33,8 @@ public class AddStudentController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		HttpSession session = request.getSession();
-		if (session.getAttribute("loggedIn") != null) {
 			RequestDispatcher view = request.getRequestDispatcher("view/addStudent.jsp");
 			view.forward(request, response);
-		}
-		else {
-			response.sendRedirect("login");
-		}
 	}
 
 	/**
