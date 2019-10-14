@@ -1,8 +1,11 @@
 package com.techlabs.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.techlabs.model.Account;
+import com.techlabs.model.TransactionLog;
 import com.techlabs.repository.BankRepository;
 
 public class BankService {
@@ -30,4 +33,9 @@ public class BankService {
 		bankRepo.withdraw(accName, amount);
 	}
 	
+	public List<TransactionLog> getTransactions(String accName){
+		List<TransactionLog> transactions = new ArrayList<TransactionLog>();
+		transactions = bankRepo.getTransactions(accName);
+		return transactions;
+	}
 }

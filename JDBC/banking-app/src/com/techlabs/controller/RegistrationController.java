@@ -65,10 +65,13 @@ public class RegistrationController extends HttpServlet {
 			isFailed = true;
 		}
 
-		if (isFailed)
-			out.println("<h1 style='color:red;'>" + errMsg + "</h1>");
+		if (isFailed) {
+			request.setAttribute("message", errMsg);
+			RequestDispatcher view = request.getRequestDispatcher("view/registration.jsp");
+			view.forward(request, response);
+		}
 		else
-			out.println("<h1>Account added successfully</h1>");
+			response.sendRedirect("welcome");
 
 	}
 

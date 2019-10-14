@@ -29,6 +29,20 @@ fieldset.scheduler-border {
 </style>
 </head>
 <body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand">Aurionpro Bank</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <!-- <li class="active"><a href="#">Home</a></li> -->
+      <li><a href="transaction">Transaction</a></li>
+      <li><a href="passbook">Passbook</a></li>
+      <li><a href="profile">Profile</a></li>
+      <li><a href="logout" class="glyphicon glyphicon-log-out" >Logout</a></li>
+    </ul>
+  </div>
+</nav>
 <div id="form">
     <form method="POST" action="transaction">
         <fieldset class="scheduler-border">

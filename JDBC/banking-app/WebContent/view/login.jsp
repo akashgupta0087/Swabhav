@@ -26,9 +26,21 @@ fieldset.scheduler-border {
         #form {
             margin-left: 500px;
             margin-top: 20px;
+            }
 </style>
 </head>
 <body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand">Aurionpro Bank</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <!-- <li class="active"><a href="#">Home</a></li> -->
+      <li><a href="welcome">Home</a></li>
+    </ul>
+  </div>
+</nav>
 <div id="form">
     <form method="POST" action="login">
         <fieldset class="scheduler-border">

@@ -8,11 +8,22 @@
 <title>User Profile</title>
 </head>
 <body>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Aurionpro Bank</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <!-- <li class="active"><a href="#">Home</a></li> -->
+      <li><a href="transaction">Transaction</a></li>
+      <li><a href="passbook">Passbook</a></li>
+      <li><a href="logout" class="glyphicon glyphicon-log-out" >Logout</a></li>
+    </ul>
+  </div>
+</nav>
 <div class="jumbotron">
 <h2>A/c holder name : <%=session.getAttribute("loggedIn")%></h2>
 <h2>Total balance : <%=request.getAttribute("balance")%></h2>
-<a href="transaction"><button class="btn btn-primary">Transaction</button></a>
-<a href=""><button class="btn btn-primary">Passbook</button></a>
 </div>
 </body>
 </html>

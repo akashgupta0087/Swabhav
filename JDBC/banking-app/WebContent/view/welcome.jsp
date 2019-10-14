@@ -11,7 +11,7 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">Aurionpro Bank</a>
+      <a class="navbar-brand">Aurionpro Bank</a>
     </div>
     <ul class="nav navbar-nav">
       <!-- <li class="active"><a href="#">Home</a></li> -->
@@ -21,7 +21,10 @@
   </div>
 </nav>
 <div class="jumbotron">
+<center>
 <h1>Welcome to Aurionpro Bank</h1>
+<i>Trusted Family Bank</i>
+</center>
 </div>
 </body>
 </html>
