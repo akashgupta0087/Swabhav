@@ -14,7 +14,8 @@ import com.techlabs.viewmodel.EditStudentVM;
 public class EditStudentAction extends ActionSupport implements ModelDriven<EditStudentVM> {
 
 	private EditStudentVM editVM;
-	
+//	private String id;
+
 	@Override
 	public EditStudentVM getModel() {
 		editVM = new EditStudentVM();
@@ -24,22 +25,13 @@ public class EditStudentAction extends ActionSupport implements ModelDriven<Edit
 	@Override
 	public String execute() {
 		
-		HttpSession session = ServletActionContext.getRequest().getSession(false);
-
-		if (session == null || session.getAttribute("loggedIn") == null) {
-			System.out.println("Inside if");
-			return "login";
-		}
-		
-		else {
-		System.out.println("In execute");
 		Student student = StudentService.getInstance().getStudent(editVM.getId());
 		editVM.setRollNo(student.getRollNo());
 		editVM.setName(student.getName());
 		editVM.setAge(student.getAge());
 		editVM.setEmail(student.getEmail());
 		return "success";
-		}
+		
 	}
 	
 

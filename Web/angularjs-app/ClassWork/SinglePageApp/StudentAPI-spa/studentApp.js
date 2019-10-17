@@ -5,7 +5,6 @@ angular.module('studentModule',['ngRoute','ngMaterial'])
         templateUrl: "studentFragments/homeStudent.html",
         controller: "homeController"
     })
-    .when('/home',{
         templateUrl: "studentFragments/homeStudent.html",
         controller: "homeController"
     })

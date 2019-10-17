@@ -7,16 +7,14 @@
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="assets/bootstrap-3.4.1-dist/css/bootstrap.css">
 <title>Students</title>
+<style type="text/css">
+.delete{
+border-radius: 50%;
+}
+</style>
 </head>
 <body>
-<a href="view/addStudent.jsp">Add</a>
-<%
-if(session.getAttribute("loggedIn")!=null){
-	out.println("<label>"+(String)session.getAttribute("loggedIn")+"</label>");
-	out.println("<a href=logout>Logout</a>");
-}
-	
-%>
+<s:include value="header.jsp"></s:include>
  <table class="table">
  <thead>
  <tr>
@@ -46,8 +44,8 @@ if(session.getAttribute("loggedIn")!=null){
     <s:param name="id"><s:property value="id"/></s:param>
 	</s:url>
 	
-	<td><s:a href="%{edit}">Edit</s:a></td>
-	<td><s:a href="%{delete}"><button class="glyphicon glyphicon-remove"></button></s:a>
+	<td><s:a href="%{edit}"><button class="btn btn-primary">Edit</button></s:a></td>
+	<td><s:a href="%{delete}"><button class="glyphicon glyphicon-remove delete btn btn-danger"></button></s:a>
 
  </tr>
   </s:iterator>

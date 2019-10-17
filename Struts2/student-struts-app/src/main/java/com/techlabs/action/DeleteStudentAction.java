@@ -25,20 +25,11 @@ public class DeleteStudentAction implements Action {
 	}
 	
 	public String delete() {
-		
-		HttpSession session = ServletActionContext.getRequest().getSession(false);
 
-		if (session == null || session.getAttribute("loggedIn") == null) {
-			System.out.println("Inside if");
-			return "login";
-		}
-
-		else {
 		System.out.println(id);
 		StudentService service = StudentService.getInstance();
 		service.deleteStudent(id);
 		return "success";
-		}
 	}
 
 }

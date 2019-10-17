@@ -42,18 +42,9 @@ public class AddStudentAction extends ActionSupport implements ModelDriven<AddSt
 
 	public String addStudent() {
 
-		HttpSession session = ServletActionContext.getRequest().getSession(false);
-
-		if (session == null || session.getAttribute("loggedIn") == null) {
-			System.out.println("Inside if");
-			return "login";
-		}
-
-		else {
 			StudentService service = StudentService.getInstance();
 			service.addStudent(addVM.getRollNo(), addVM.getName(), addVM.getAge(), addVM.getEmail());
 			return "success";
-		}
 	}
 
 }
