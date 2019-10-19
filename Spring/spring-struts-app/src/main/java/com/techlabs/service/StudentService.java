@@ -15,7 +15,7 @@ public class StudentService {
 	private StudentRepository repository;
 	
 	public StudentService() {
-		System.out.println("Inside Student Service1");
+		System.out.println("Inside Student Service");
 	}
 	
 	public List<Student> getStudents(){
