@@ -8,6 +8,8 @@
 </head>
 <body>
 <h1>Index page of Struts Spring JDBC App</h1>
-<a href="view/login.jsp">Login</a>
+<% 
+response.sendRedirect("welcome");
+%>
 </body>
 </html>
