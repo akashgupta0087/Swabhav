@@ -149,7 +149,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="spring-struts-app" path="/spring-struts-app" reloadable="true" source="org.eclipse.jst.j2ee.server:spring-struts-app"/><Context docBase="spring-struts-jdbc-app" path="/spring-struts-jdbc-app" reloadable="true" source="org.eclipse.jst.j2ee.server:spring-struts-jdbc-app"/></Host>
+      <Context docBase="spring-struts-app" path="/spring-struts-app" reloadable="true" source="org.eclipse.jst.j2ee.server:spring-struts-app"/><Context docBase="spring-struts-jdbc-app" path="/spring-struts-jdbc-app" reloadable="true" source="org.eclipse.jst.j2ee.server:spring-struts-jdbc-app"/><Context docBase="struts-spring-hibernate-app" path="/struts-spring-hibernate-app" reloadable="true" source="org.eclipse.jst.j2ee.server:struts-spring-hibernate-app"/></Host>
     </Engine>
   </Service>
 </Server>

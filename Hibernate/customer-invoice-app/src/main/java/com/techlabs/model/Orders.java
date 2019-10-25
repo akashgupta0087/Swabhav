@@ -9,11 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "Orders")
-public class Order {
+public class Orders {
 
 	@Id
 	private int id;
@@ -22,8 +20,8 @@ public class Order {
 	@JoinColumn
 	private Customer cust;
 	
-	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-	private Set<LineItem> lineItems = new HashSet<LineItem>();
+//	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+//	private Set<LineItem> lineItems = new HashSet<LineItem>();
 
 	public int getId() {
 		return id;
@@ -41,12 +39,12 @@ public class Order {
 		this.cust = cust;
 	}
 
-	public Set<LineItem> getLineItems() {
-		return lineItems;
-	}
-
-	public void setLineItems(Set<LineItem> lineItems) {
-		this.lineItems = lineItems;
-	}
+//	public Set<LineItem> getLineItems() {
+//		return lineItems;
+//	}
+//
+//	public void setLineItems(Set<LineItem> lineItems) {
+//		this.lineItems = lineItems;
+//	}
 	
 }

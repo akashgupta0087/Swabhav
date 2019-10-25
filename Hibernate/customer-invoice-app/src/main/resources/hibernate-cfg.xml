@@ -13,7 +13,7 @@
         <property name="hibernate.dialect"> org.hibernate.dialect.MySQLDialect</property>
         <property name="hbm2ddl.auto">update</property>
         <property name="format_sql">true</property>
-        <mapping class="com.techlabs.model.Department" />
-        <mapping class="com.techlabs.model.Employee" />
+        <mapping class="com.techlabs.model.Customer" />
+        <mapping class="com.techlabs.model.Orders" />
     </session-factory>
 </hibernate-configuration>

@@ -6,7 +6,7 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost/aurionpro2</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:4040/aurionpro2</property>
         <property name="connection.username">root</property>
         <property name="connection.password">root</property>
         <property name="show_sql">true</property>
@@ -15,5 +15,6 @@
         <property name="format_sql">true</property>
         <mapping class="com.techlabs.model.Customer" />
         <mapping class="com.techlabs.model.Order" />
+        <mapping class="com.techlabs.model.LineItem" />
     </session-factory>
 </hibernate-configuration>
