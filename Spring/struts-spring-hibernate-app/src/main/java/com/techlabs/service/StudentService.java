@@ -27,12 +27,16 @@ public class StudentService {
 		repository.addStudent(rollNo, name, age, email);
 	}
 	
-	public Student getStudent(UUID id) {
+	public Student getStudent(String id) {
 		return repository.getStudent(id);
 	}
 	
-	public void updateStudent(Student student, int rollNo, String name, int age, String email) {
-		repository.updateStudent(student, rollNo, name, age, email);
+	public void updateStudent(String id, int rollNo, String name, int age, String email) {
+		repository.updateStudent(id, rollNo, name, age, email);
+	}
+	
+	public void deleteStudent(String id) {
+		repository.deleteStudent(id);
 	}
 
 }

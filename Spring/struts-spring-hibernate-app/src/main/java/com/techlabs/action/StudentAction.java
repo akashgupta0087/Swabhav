@@ -19,6 +19,10 @@ public class StudentAction implements Action{
 	
 	private List<Student> students;
 
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
+
 	public List<Student> getStudents(){
 		return service.getStudents();
 	}
@@ -26,7 +30,7 @@ public class StudentAction implements Action{
 	@Override
 	public String execute() throws Exception {
 		System.out.println(factory.getClass());
-//		students = getStudents();
+		students = getStudents();
 //		System.out.println(students.size());
 		return "success";
 	}

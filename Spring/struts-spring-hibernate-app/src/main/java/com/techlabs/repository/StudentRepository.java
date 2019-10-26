@@ -50,20 +50,38 @@ public class StudentRepository {
 		return list;
 	}
 
-	public Student getStudent(UUID id) {
+	public Student getStudent(String id) {
 		System.out.println("Id is from getStudent: " + id);
 		session = factory.openSession();
-		Student studentFound = (Student) session.get(Student.class, id);
+		UUID newId = UUID.fromString(id);
+		Student studentFound = (Student) session.get(Student.class, newId);
 		System.out.println("Student is : " + studentFound);
 		session.close();
 		return studentFound;
 	}
 
-	public void updateStudent(Student student, int rollNo, String name, int age, String email) {
+	public void updateStudent(String id, int rollNo, String name, int age, String email) {
+		session = factory.openSession();
+		Transaction txn = session.beginTransaction();
+		UUID newId = UUID.fromString(id);
+		Student student = (Student) session.get(Student.class, newId);
 		student.setRollNo(rollNo);
 		student.setName(name);
 		student.setAge(age);
 		student.setEmail(email);
+		session.update(student);
+		txn.commit();
+		session.close();
+	}
+	
+	public void deleteStudent(String id) {
+		session = factory.openSession();
+		Transaction txn = session.beginTransaction();
+		UUID newId = UUID.fromString(id);
+		Student student = (Student) session.get(Student.class, newId);
+		session.delete(student);
+		txn.commit();
+		session.close();
 	}
 
 }

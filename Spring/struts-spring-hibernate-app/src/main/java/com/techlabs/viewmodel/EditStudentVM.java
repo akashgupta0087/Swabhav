@@ -4,18 +4,18 @@ import java.util.UUID;
 
 public class EditStudentVM {
 	
-	private UUID id;
+	private static String id;
 	private int rollNo;
 	private String name;
 	private int age;
 	private String email;
 	
-	public UUID getId() {
+	public String getId() {
 		System.out.println("Id in EditVM Get : " + id);
 		return id;
 	}
 	
-	public void setId(UUID id) {
+	public void setId(String id) {
 		System.out.println("Id in EditVM Set : " + id);
 		this.id = id;
 	}

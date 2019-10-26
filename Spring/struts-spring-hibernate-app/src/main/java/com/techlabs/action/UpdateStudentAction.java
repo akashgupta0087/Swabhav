@@ -39,9 +39,9 @@ private StudentService service;
 	}
 	
 	public String update() {
-		Student student = service.getStudent(editVM.getId());
-		
-		service.updateStudent(student, editVM.getRollNo(), editVM.getName(), editVM.getAge(), editVM.getEmail());
+//		Student student = service.getStudent(editVM.getId());
+			
+		service.updateStudent(editVM.getId(), editVM.getRollNo(), editVM.getName(), editVM.getAge(), editVM.getEmail());
 		return "success";
 	}
 

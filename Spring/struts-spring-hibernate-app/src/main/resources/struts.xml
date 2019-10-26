@@ -27,6 +27,10 @@
          	<result name="input">view/editStudent.jsp</result>
          </action>
          
+         <action name="deleteStudent" class="com.techlabs.action.DeleteStudentAction" method="delete">
+    		<result name="success" type="redirectAction">student</result>
+    	 </action>
+         
          
         
          
