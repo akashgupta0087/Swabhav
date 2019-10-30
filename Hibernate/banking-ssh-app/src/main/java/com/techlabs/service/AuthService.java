@@ -21,5 +21,9 @@ public class AuthService {
 		
 		return isValid;
 	}
+	
+	public boolean isUsernameTaken(String accName) {
+		return bankRepo.isUsernameTaken(accName);	
+	}
 
 }

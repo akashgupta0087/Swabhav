@@ -3,11 +3,16 @@ package com.techlabs.repository;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -37,119 +42,121 @@ public class BankRepository {
 		 System.out.println("Inside Bank Repository");
 	}
 	
-	public void addAccount(String name, String password, float balance) throws SQLException {
+	public void addAccount(String name, String password, float balance) throws HibernateException {
 			
 			Account acc = new Account();
 			acc.setAccName(name);
 			acc.setAccPassword(password);
 			acc.setBalance(balance);
 			
+			TransactionLog txnLog = new TransactionLog();
+			
+			txnLog.setAcc(acc);
+			txnLog.setAmount(balance);
+			txnLog.setTransactionType("Deposit");
+			txnLog.setTransactionDate(java.sql.Date.valueOf(java.time.LocalDate.now()));
+						
+			Set<TransactionLog> transactions = new HashSet<TransactionLog>();
+			
+			transactions.add(txnLog);
+			
 			session = factory.openSession();
 			Transaction txn = session.beginTransaction();
 			
+			acc.setTransactions(transactions);
 			session.save(acc);
+			
 			txn.commit();
 			session.close();
 			
-//			System.out.println("Transaction Failed");
-//			System.out.println(e.getMessage());
-
 	}
 	
 	public String getPassword(String accName){
-		String password = "";
-		try {
-			preparedStmt = connection.prepareStatement("Select accPassword from BankMaster where accName=?");
-			preparedStmt.setString(1, accName);
-			ResultSet resultSet = preparedStmt.executeQuery();
-			
-			while(resultSet.next()) {
-				password = resultSet.getString("accPassword");
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 		
-		return password;
+		session = factory.openSession();
+		Account acc = (Account) session.createCriteria(Account.class).add(Restrictions.eq("accName", accName)).uniqueResult();
+		session.close();
+		System.out.println(acc.getAccPassword());
+		return acc.getAccPassword();
 	}
 	
 	
 	public float getBalance(String accName) {
-		float balance = 0.0f;
 		
-		try {
-			preparedStmt = connection.prepareStatement("Select balance from BankMaster where accName=?");
-			preparedStmt.setString(1, accName);
-			ResultSet resultSet = preparedStmt.executeQuery();
-			
-			while(resultSet.next()) {
-				balance = resultSet.getFloat("balance");
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		session = factory.openSession();
+		Account acc = (Account) session.createCriteria(Account.class).add(Restrictions.eq("accName", accName)).uniqueResult();
+		session.close();
 		
-		return balance;
+		return acc.getBalance();
 	}
 	
 	public void deposit(String accName, float amount) throws SQLException {
-		connection.setAutoCommit(false);
 		
-		preparedStmt=connection.prepareStatement("Insert into BankTransaction values(?,?,?,?)");
-		preparedStmt.setString(1, accName);
-		preparedStmt.setFloat(2,amount);
-		preparedStmt.setString(3, "Deposit");
-		preparedStmt.setDate(4, java.sql.Date.valueOf(java.time.LocalDate.now()));
-		preparedStmt.executeUpdate();
+		session = factory.openSession();
+		Transaction txn = session.beginTransaction();
 		
-		preparedStmt = connection.prepareStatement("Update BankMaster set balance=balance+? where accName=?");
-		preparedStmt.setFloat(1,amount);
-		preparedStmt.setString(2, accName);
-		preparedStmt.executeUpdate();
+		Account acc = (Account) session.createCriteria(Account.class).add(Restrictions.eq("accName", accName)).uniqueResult();
 		
-		System.out.println("Success");
-		connection.commit();
+		TransactionLog txnLog = new TransactionLog();
+		txnLog.setAcc(acc);
+		txnLog.setAmount(amount);
+		txnLog.setTransactionType("Deposit");
+		txnLog.setTransactionDate(java.sql.Date.valueOf(java.time.LocalDate.now()));
+		session.save(txnLog);
+		
+		acc.setBalance(acc.getBalance() + amount);
+		session.update(acc);
+		
+		txn.commit();
+		session.close();
+	
 	}
 	
 	public void withdraw(String accName, float amount) throws SQLException {
-       connection.setAutoCommit(false);
 		
-		preparedStmt=connection.prepareStatement("Insert into BankTransaction values(?,?,?,?)");
-		preparedStmt.setString(1, accName);
-		preparedStmt.setFloat(2,amount);
-		preparedStmt.setString(3, "Withdraw");
-		preparedStmt.setDate(4, java.sql.Date.valueOf(java.time.LocalDate.now()));
-		preparedStmt.executeUpdate();
+		session = factory.openSession();
+		Transaction txn = session.beginTransaction();
 		
-		preparedStmt = connection.prepareStatement("Update BankMaster set balance=balance-? where accName=?");
-		preparedStmt.setFloat(1,amount);
-		preparedStmt.setString(2, accName);
-		preparedStmt.executeUpdate();
+		Account acc = (Account) session.createCriteria(Account.class).add(Restrictions.eq("accName", accName)).uniqueResult();
 		
-		System.out.println("Success");
-		connection.commit();
+		TransactionLog txnLog = new TransactionLog();
+		txnLog.setAcc(acc);
+		txnLog.setAmount(amount);
+		txnLog.setTransactionType("Withdraw");
+		txnLog.setTransactionDate(java.sql.Date.valueOf(java.time.LocalDate.now()));
+		session.save(txnLog);
+		
+		acc.setBalance(acc.getBalance() - amount);
+		session.update(acc);
+		
+		txn.commit();
+		session.close();
 	}
 	
 	public List<TransactionLog> getTransactions(String accName){
-		List<TransactionLog> transactions = new ArrayList<TransactionLog>();
 		
-		try {
-			preparedStmt = connection.prepareStatement("Select * from BankTransaction where accName=?");
-			preparedStmt.setString(1, accName);
-			ResultSet resultSet = preparedStmt.executeQuery();
-			
-			while(resultSet.next()) {
-				transactions.add(new TransactionLog(resultSet.getString("accName"), resultSet.getFloat("amount"), resultSet.getString("transactionType"), resultSet.getDate("transactionDate")));
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		session = factory.openSession();
 		
+		Account acc = (Account) session.createCriteria(Account.class).add(Restrictions.eq("accName", accName)).uniqueResult();
+		
+		List<TransactionLog> transactions =  session.createCriteria(TransactionLog.class).add(Restrictions.eq("acc",acc)).list();
+		
+		session.close();
+			
 		return transactions;
 	}
 	
+	public boolean isUsernameTaken(String accName){
+		session = factory.openSession();
+		Transaction txn = session.beginTransaction();
+		Account acc = (Account) session.createCriteria(Account.class).add(Restrictions.eq("accName", accName)).uniqueResult();
+		txn.commit();
+		session.close();
+		
+		if(acc != null)
+			return true;
+		return false;
+		
+	}
 }
 

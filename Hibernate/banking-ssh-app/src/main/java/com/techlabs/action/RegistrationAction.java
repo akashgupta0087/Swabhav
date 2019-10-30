@@ -2,6 +2,7 @@ package com.techlabs.action;
 
 import java.sql.SQLException;
 
+import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -13,6 +14,15 @@ import com.techlabs.viewmodel.RegistrationVM;
 public class RegistrationAction extends ActionSupport implements ModelDriven<RegistrationVM> {
 
 	private RegistrationVM regVM;
+//	private String username;
+//
+//	public String getUsername() {
+//		return username;
+//	}
+//
+//	public void setUsername(String username) {
+//		this.username = username;
+//	}
 
 	@Autowired
 	private BankService service;
@@ -42,11 +52,17 @@ public class RegistrationAction extends ActionSupport implements ModelDriven<Reg
 			service.addAccount(regVM.getAccName(), regVM.getAccPassword(), regVM.getBalance());
 			return "success";
 
-		} catch (SQLException e) {
-			regVM.setMessage(e.getMessage());
+		} catch (HibernateException e) {
+			regVM.setMessage("Record already exists");
 			return "register";
 
 		}
 	}
+	
+//	public String validateUsername() {
+//		System.out.println("Inside validateUsername");
+//		System.out.println(username);
+//		return "success";
+//	}
 
 }

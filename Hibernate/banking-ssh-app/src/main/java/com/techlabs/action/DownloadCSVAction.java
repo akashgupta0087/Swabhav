@@ -37,7 +37,7 @@ public class DownloadCSVAction implements Action {
 	        String outputResult = "";
 	        
 	        for(TransactionLog transaction : transactions) { 
-//	        	outputResult += transaction.getAccName() + "," + transaction.getAmount() + "," + transaction.getTransactionType() + "," + transaction.getTransactionDate() + "\n";
+	        	outputResult += transaction.getId() + "," + transaction.getAmount() + "," + transaction.getTransactionType() + "," + transaction.getTransactionDate() + "," + transaction.getAcc().getId() + "\n";
 	        }
 	       
 	        outputStream.write(outputResult.getBytes());

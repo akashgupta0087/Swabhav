@@ -31,11 +31,11 @@ public class TransactionLog {
 	private String transactionType;
 	private Date transactionDate;
 	
-	public TransactionLog(String accName, float amount, String transactionType, Date transactionDate) {
-		this.amount = amount;
-		this.transactionType = transactionType;
-		this.transactionDate = transactionDate;
-	}
+//	public TransactionLog(String accName, float amount, String transactionType, Date transactionDate) {
+//		this.amount = amount;
+//		this.transactionType = transactionType;
+//		this.transactionDate = transactionDate;
+//	}
 
 	public float getAmount() {
 		return amount;
@@ -48,5 +48,35 @@ public class TransactionLog {
 	public Date getTransactionDate() {
 		return transactionDate;
 	}
+
+	public void setId(UUID id) {
+		this.id = id;
+	}
+
+	public UUID getId() {
+		return id;
+	}
+
+	public Account getAcc() {
+		return acc;
+	}
+
+	public void setAcc(Account acc) {
+		this.acc = acc;
+	}
+
+	public void setAmount(float amount) {
+		this.amount = amount;
+	}
+
+	public void setTransactionType(String transactionType) {
+		this.transactionType = transactionType;
+	}
+
+	public void setTransactionDate(Date transactionDate) {
+		this.transactionDate = transactionDate;
+	}
+	
+	
 
 }

@@ -36,19 +36,21 @@
 <table class="table">
 <thead>
 <tr>
-<th>A/c Name</th>
+<th>Id</th>
 <th>Amount</th>
 <th>Transaction Type</th>
 <th>Transaction Date</th>
+<th>Account Id</th>
 </tr>
 </thead>
 <tbody>
  <s:iterator  var="i" step="1" value="transactions">
 	 <tr>
-		<td><s:property value="accName"/></td>
+	 	<td><s:property value="id"/></td>
 		<td><s:property value="amount"/></td>
 		<td><s:property value="transactionType"/></td>
 		<td><s:property value="transactionDate"/></td>
+		<td><s:property value="acc.id"/></td>
  	</tr>
  </s:iterator>
 </tbody>

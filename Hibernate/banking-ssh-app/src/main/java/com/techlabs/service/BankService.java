@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public class BankService {
 	@Autowired
 	private BankRepository bankRepo;
 	
-	public void addAccount(String name, String password, float balance) throws SQLException {
+	public void addAccount(String name, String password, float balance) throws HibernateException {
 		bankRepo.addAccount(name,password,balance);
 	}
 	
@@ -39,4 +40,5 @@ public class BankService {
 		transactions = bankRepo.getTransactions(accName);
 		return transactions;
 	}
+	
 }
