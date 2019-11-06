@@ -27,5 +27,13 @@ public class BookService {
 		return bookRepo.getImage(id);
 		
 	}
+	
+	public void addCustomer(String username, String password, String email, int age, String gender, long mobileNumber, String location) {
+		bookRepo.addCustomer(username, password, email, age, gender, mobileNumber, location);
+	}
+	
+	public Book getBookById(String id) {
+		return bookRepo.getBookById(id);
+	}
 
 }

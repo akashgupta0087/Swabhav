@@ -9,29 +9,36 @@ import com.techlabs.model.Book;
 import com.techlabs.service.BookService;
 
 public class WelcomeAction implements Action{
-	
 	@Autowired
-	private BookService service;
-	
+	private BookService bookService;
 	private List<Book> books;
-	private String imgName = "https://covers.openlibrary.org/w/id/8045456-M.jpg";
+	private int num=0;
+	@Override
+	public String execute() throws Exception {
+		books=bookService.getAllBooks();
+		return "success";
+	}
 
 	public List<Book> getBooks() {
 		return books;
 	}
 
-	@Override
-	public String execute() throws Exception {
-		books = service.getAllBooks();
-		return "success";
+	public void setBooks(List<Book> books) {
+		this.books = books;
 	}
-	
-	public String getImgName() {
-		return imgName;
+
+	public int getNum() {
+		int size=getBooks().size();
+		int limit=(size>3)?2:(size-1);
+		System.out.println(limit);
+		return limit;
 	}
-	public void setImgName(String imgName) {
-		this.imgName = imgName;
+
+	public void setNum(int num) {
+		this.num = num;
 	}
 	
 
+
+	
 }
