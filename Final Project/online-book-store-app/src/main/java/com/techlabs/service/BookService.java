@@ -1,6 +1,5 @@
 package com.techlabs.service;
 
-import java.sql.Blob;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,15 +18,6 @@ public class BookService {
 		System.out.println("Inside Book Service");
 	}
 	
-	public List<Book> getAllBooks(){
-		return bookRepo.getAllBooks();
-	}
-	
-	public Blob getImage(String id) {
-		return bookRepo.getImage(id);
-		
-	}
-	
 	public void addCustomer(String username, String password, String email, int age, String gender, long mobileNumber, String location) {
 		bookRepo.addCustomer(username, password, email, age, gender, mobileNumber, location);
 	}
@@ -35,5 +25,10 @@ public class BookService {
 	public Book getBookById(String id) {
 		return bookRepo.getBookById(id);
 	}
+	
+	public List<Book> getBookByCategory(String category) {
+		return bookRepo.getBookByCategory(category);
+	}
+	
 
 }

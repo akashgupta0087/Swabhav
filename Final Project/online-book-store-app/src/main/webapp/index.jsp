@@ -7,8 +7,8 @@
 <title>Index</title>
 </head>
 <body>
-<h1>Index page of Struts Spring JDBC App</h1>
-<% 
+<h1>Index page of Online Book Store App</h1>
+<%
 response.sendRedirect("welcome");
 %>
 </body>

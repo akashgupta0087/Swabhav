@@ -15,6 +15,7 @@ public class BookInfoAction implements Action {
 	public String execute() throws Exception {
 		book=bookService.getBookById(id);
 		System.out.println(book.getBookName()+book.getCategory());
+		
 		return "success";
 	}
 	public String getId() {
@@ -31,3 +32,4 @@ public class BookInfoAction implements Action {
 	}
 	
 }
+

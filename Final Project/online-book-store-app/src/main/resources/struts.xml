@@ -23,7 +23,7 @@
         </action>
         
         <action name="Image" class="com.techlabs.action.RetrieveImageAction">
-         	<result name="success">view/welcome.jsp</result>
+         	<result name="success" type="json">view/welcome.jsp</result>
         </action>
         
         <action name="bookInfo" class="com.techlabs.action.BookInfoAction">
@@ -35,7 +35,7 @@
         </action>
         
         <action name="register.do" class="com.techlabs.action.RegistrationAction">
-         		<result name="success">view/welcome.jsp</result>
+         		<result name="success" type="redirectAction">welcome</result>
          		<result name="input">/view/registration.jsp</result>
         </action>
         
@@ -55,6 +55,35 @@
          	<result name="success" type="redirectAction">welcome</result>
          	<result name="input">/view/login.jsp</result>
          </action>
+         
+          <action name="get" class="com.techlabs.action.ImageTestLoader">
+			<result name="success">view/imageTest.jsp</result>
+		 </action>
+		 
+         <action name="getImage" class="com.techlabs.action.RetrieveImageAction">
+			<result name="success">view/imageTest.jsp</result>
+		 </action>
+         
+    	<action name="bookCategory" class="com.techlabs.action.BookCategoryAction">
+       	    <result name="success">view/bookCategory.jsp</result>
+    	</action>
+    	
+    	<action name="addBook" class="com.techlabs.action.AddBookLoaderAction">
+       	    <result name="success">view/addBook.jsp</result>
+    	</action>
+    	
+    	<action name="addBook.do" class="com.techlabs.action.AddBookAction">
+       	    <result name="success" type="redirectAction">addBook</result>
+       	    <result name="input">view/addBook.jsp</result>
+    	</action>
+    	
+    	<action name="addToCart" class="com.techlabs.action.AddToCartAction">
+       		 <result name="success" type="redirectAction">viewCart</result>
+   		</action>
+   		
+   		<action name="viewCart" class="com.techlabs.action.ViewCartAction">
+       	    <result name="success">view/viewCart.jsp</result>
+    	</action>
          
     </package>
 </struts>
